@@ -1,0 +1,53 @@
+{
+  "name": "Sedela",
+  "editor": "IMTAtlantique",
+  "slug": "sedela",
+  "icon": "assets/sedela.jpg",
+  "type": "webapp",
+  "developer": {
+    "name": "NIANG Mouhamadou"
+  },
+  "locales": {
+    "en": {
+      "short_description": "Application d'écritures réflexives dans le cas du projet Sedela",
+      "long_descrption": ""
+    }
+  },
+  "license": "MIT",
+  "version": "0.1.0",
+  "permissions": {
+    "apps": {
+      "type": "io.cozy.apps",
+      "verbs": [
+        "GET"
+      ]
+    },
+    "contacts": {
+      "type": "io.cozy.contacts"
+    },
+    "files": {
+      "type": "io.cozy.files"
+    },
+    "writings": {
+      "type": "io.sedela.writings",
+      "verbs": [ "GET", "POST", "PUT" ]
+    },
+    "forums": {
+      "type": "io.sedela.forums",
+      "verbs": [ "GET", "POST", "PUT" ]
+    }
+},
+
+ "routes": {
+    "/": {
+      "folder": "/",
+      "index": "index.html",
+      "public": false
+    },
+    "/public": {
+      "folder": "/public",
+      "index": "index.html",
+      "public": true
+    }
+  }
+}
