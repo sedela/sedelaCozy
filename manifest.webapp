@@ -32,8 +32,8 @@
       "type": "io.sedela.writings",
       "verbs": [ "GET", "POST", "PUT" ]
     },
-    "forums": {
-      "type": "io.sedela.forums",
+    "comments": {
+      "type": "io.sedela.comments",
       "verbs": [ "GET", "POST", "PUT" ]
     }
 },
