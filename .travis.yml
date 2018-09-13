@@ -7,8 +7,11 @@ branches:
   except:
   - build
 env:
+  global:
   # GITHUB_TOKEN
   - secure: "hj2xEyuAmloTRzonlv1jqT3D3IkqXlYfV1udXv4YG69M6ljfMM9gMQFsrwVmJ3aC6GP5RviKKOVv1Z6UQYKjZ1tlXhr4D21fRFi/3lvK6CUE5orpI8Hw3R9dTLK2LaQg/m6cJI5+Z/wvy7iRT2XWvNLwJ1qPhGkfjryWyBaEAsM1K/PjXGTCCh+ngO7g1iwJr1LYrIkqyu/KESA5qsd6r5fulWapkjm+o5xthyyFoeG7N5uYJQQAkFQS5fHwWQnkMMDYWJ5Qh0xnO5gBEhgv9xiQGxxMM265CA8ldj07uq0jLz11IJIp5D7wDuri8HRSvKNNAzP9OfnyZ2kwqo/NQ+E5i54qX+WCZ7X6oDNQ/IJcncXD6mRD9PPL7dPFbrChKVK2L15NeycC+RHjgZR3ndHrh9u5iB0n0m4p1NiDz/mAsZQBjJknwv/pWNE/6inN5ztR9FhlP2FmdXx3t5Oz7K+NAltBWCbLCxG2hrMx5zu3rXyPoOhd0s6nfn/e5ctGOFMChkOALF2P/OsqjdMxc604rQO5bEKfxtupiJZAmVlb2ZJ+WCKZ3oeUP7JKAurtadPYSNGmnTjVF2kFFLCizrd3/QP77fHL+6T0bJaNSxJpLlJ6c/NxkcRgVAAlcsXZAfYL7rs+rrDA7ukZS4chKID6UfFsH8M7RLmIp/CD1KQ="
+  # REGISTRY_TOKEN
+  - secure: "p6ZTHiJuxekmgzyp7myuoXU7Iqu20gNz+mpPUYwaNwJaZijaNxz80UWzI1eMhrzQWQXBLXbUNVLdsfFzPfXHqtvvvW97gWwhTuZc940SfSBLZf+oUYjPB9Ze0oHDgnrawdq6uuZQsBPqAsT2PZAnrjcfgCxHXkiaZx6MX+S3VBs2UG4qqSSuzeQBFOfGY0WfYHm26dGt39fdvtZ+6/3V8p+VGfiNnfHlkFdcya106QHXFFRnZ1SrUDu+Sp6EjWgsj8UxOKgj8J4t7mGJOwr/tG/Hip/Yxh6q0n+WDHub4QvroS18wHp6K+kyKLFUCcUw6YwEjT67RXTtmACXCoRwuaTPvUALUg0XPY2e5KRGF5QC/tAKo2lVZ781Gxr2sj9/zepf2uZO78zhgl0Bs/PxfzZZA27n69dUo/bekUtRvAT/fmH9wmW3JslWdtnxt/skj/bCF7A0G6N6u2EVBmkeGyrR6tyS24HgtH+cUfrjk3Qvlpyi2OwTdQy14ytkB9OCAbIrrzNByZdO7NTyz0PcIHd9k2fT6BCPVEOcEZi3oGi/bPmKnQmFXOJHW0YR/40CsXEg/mUaXTGD/Kz3jvj3Ll+wElVUsoynGqX12hAaRJga1vtgdCYFDbXZFM6ABHN5XmJq+qd7kIkrQ49oONor6V7b2FIF6+tYuaLJ/TRpS+4="
 cache:
   yarn: true
   directories:
@@ -20,6 +23,6 @@ deploy:
   - provider: script
     repo: sedela/sedela
     skip-cleanup: true
-    script: yarn deploy --branch=build
+    script: yarn deploy --branch=build && yarn cozyPublish
     on:
       branch: master

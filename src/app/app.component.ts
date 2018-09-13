@@ -47,6 +47,17 @@ export class AppComponent implements OnInit { // implementing OnInit
 
 
   constructor(public dataservice: DataService, elm: ElementRef) {
+    document.addEventListener('DOMContentLoaded', () => {
+      const root = <HTMLElement>document.querySelector('[role=application]');
+      const data = root.dataset
+      window['cozy'].bar.init({
+        appName: data.cozyAppName,
+        appSlug: data.cozyAppSlug,
+        iconPath: data.cozyIconPath,
+        lang: data.cozyLocale,
+        replaceTitleOnMobile: false
+      });
+    })
     const root = <HTMLElement>document.querySelector('[role=application]');
     this.data = root.dataset;
     this.myToken = this.data.cozyToken;
