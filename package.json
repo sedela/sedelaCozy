@@ -1,11 +1,12 @@
 {
-  "name": "sedelaproto",
-  "version": "0.0.0",
+  "name": "sedela",
+  "version": "0.1.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
+    "postbuild": "cp ./manifest.webapp dist/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

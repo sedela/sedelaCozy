@@ -1,56 +1,41 @@
 {
-   "name": "Sedela",
-  "editor": "IMT",
-  "slug": "ecritreflexif",
-  "description": "sedelaproto",
+  "name": "Sedela",
+  "editor": "IMT_Atlantique",
+  "slug": "sedela",
+  "icon": "assets/sedela.jpg",
+  "type": "webapp",
   "developer": {
     "name": "NIANG Mouhamadou"
   },
- "default_locale": "en",
   "locales": {
-    "en": {}
+    "en": {
+      "short_description": "Application d'écritures réflexives dans le cas du projet Sedela",
+      "long_descrption": ""
+    }
   },
   "license": "MIT",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "permissions": {
-       "apps": {
+    "apps": {
       "type": "io.cozy.apps",
       "verbs": [
         "GET"
       ]
     },
-    "permissions": {
-      "type": "io.cozy.permissions"
+    "contacts": {
+      "type": "io.cozy.contacts"
     },
-    "settings": {
-      "type": "io.cozy.settings"
+    "files": {
+      "type": "io.cozy.files"
     },
-    "sample": {
-      "type": "io.cozy.dev.sample",
-      "verbs": ["GET", "POST", "PUT", "PATCH", "DELETE"]
+    "writings": {
+      "type": "io.sedela.writings",
+      "verbs": [ "GET", "POST", "PUT" ]
     },
-    "jobs": {
-      "type": "io.cozy.jobs"
-    },
- "mydbs": {
-      "type": "io-cozy-mydbs",
-      "verbs": [ "GET", "POST", "PUT" ] 
-    },
-   
-"forums": {
-      "type": "io-cozy-forums",
-      "verbs": [ "GET", "POST", "PUT" ] 
-    },
- "contacts": {
-      "type": "io-cozy-contacts",
-       "methods": [ "ALL"]
-    },
-
-"files": {
-      "type": "io-cozy-files",
-       "methods": [ "ALL" ]
+    "forums": {
+      "type": "io.sedela.forums",
+      "verbs": [ "GET", "POST", "PUT" ]
     }
-   
 },
 
  "routes": {
