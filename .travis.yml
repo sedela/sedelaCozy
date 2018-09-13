@@ -1,0 +1,25 @@
+language: node_js
+matrix:
+  fast_finish: true
+node_js:
+- '8'
+branches:
+  except:
+  - build
+env:
+  # GITHUB_TOKEN
+  - secure: "hj2xEyuAmloTRzonlv1jqT3D3IkqXlYfV1udXv4YG69M6ljfMM9gMQFsrwVmJ3aC6GP5RviKKOVv1Z6UQYKjZ1tlXhr4D21fRFi/3lvK6CUE5orpI8Hw3R9dTLK2LaQg/m6cJI5+Z/wvy7iRT2XWvNLwJ1qPhGkfjryWyBaEAsM1K/PjXGTCCh+ngO7g1iwJr1LYrIkqyu/KESA5qsd6r5fulWapkjm+o5xthyyFoeG7N5uYJQQAkFQS5fHwWQnkMMDYWJ5Qh0xnO5gBEhgv9xiQGxxMM265CA8ldj07uq0jLz11IJIp5D7wDuri8HRSvKNNAzP9OfnyZ2kwqo/NQ+E5i54qX+WCZ7X6oDNQ/IJcncXD6mRD9PPL7dPFbrChKVK2L15NeycC+RHjgZR3ndHrh9u5iB0n0m4p1NiDz/mAsZQBjJknwv/pWNE/6inN5ztR9FhlP2FmdXx3t5Oz7K+NAltBWCbLCxG2hrMx5zu3rXyPoOhd0s6nfn/e5ctGOFMChkOALF2P/OsqjdMxc604rQO5bEKfxtupiJZAmVlb2ZJ+WCKZ3oeUP7JKAurtadPYSNGmnTjVF2kFFLCizrd3/QP77fHL+6T0bJaNSxJpLlJ6c/NxkcRgVAAlcsXZAfYL7rs+rrDA7ukZS4chKID6UfFsH8M7RLmIp/CD1KQ="
+cache:
+  yarn: true
+  directories:
+  - node_modules
+script:
+# - yarn test
+- yarn build
+deploy:
+  - provider: script
+    repo: sedela/sedela
+    skip-cleanup: true
+    script: yarn deploy --branch=build
+    on:
+      branch: master
