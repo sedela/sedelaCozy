@@ -1,0 +1,68 @@
+{
+   "name": "Sedela",
+  "editor": "IMT",
+  "slug": "ecritreflexif",
+  "description": "sedelaproto",
+  "developer": {
+    "name": "NIANG Mouhamadou"
+  },
+ "default_locale": "en",
+  "locales": {
+    "en": {}
+  },
+  "license": "MIT",
+  "version": "0.0.0",
+  "permissions": {
+       "apps": {
+      "type": "io.cozy.apps",
+      "verbs": [
+        "GET"
+      ]
+    },
+    "permissions": {
+      "type": "io.cozy.permissions"
+    },
+    "settings": {
+      "type": "io.cozy.settings"
+    },
+    "sample": {
+      "type": "io.cozy.dev.sample",
+      "verbs": ["GET", "POST", "PUT", "PATCH", "DELETE"]
+    },
+    "jobs": {
+      "type": "io.cozy.jobs"
+    },
+ "mydbs": {
+      "type": "io-cozy-mydbs",
+      "verbs": [ "GET", "POST", "PUT" ] 
+    },
+   
+"forums": {
+      "type": "io-cozy-forums",
+      "verbs": [ "GET", "POST", "PUT" ] 
+    },
+ "contacts": {
+      "type": "io-cozy-contacts",
+       "methods": [ "ALL"]
+    },
+
+"files": {
+      "type": "io-cozy-files",
+       "methods": [ "ALL" ]
+    }
+   
+},
+
+ "routes": {
+    "/": {
+      "folder": "/",
+      "index": "index.html",
+      "public": false
+    },
+    "/public": {
+      "folder": "/public",
+      "index": "index.html",
+      "public": true
+    }
+  }
+}
