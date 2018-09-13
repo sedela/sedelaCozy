@@ -8,7 +8,7 @@ import { QuillDeltaToHtmlConverter } from './quill-delta-to-html/src/QuillDeltaT
 @Injectable()
 
 @Component({
-  selector: 'app-root',
+  selector: 'div[role=application]',
   templateUrl: './app.component.html',
   /**template: `
 
@@ -38,6 +38,7 @@ export class AppComponent implements OnInit { // implementing OnInit
   // compteur: any;
   // @Input()
   @Input() myToken: any = 2;
+  @Input() data: any = {};
   @Input() myDomain: any = 3;
   htmls: any = 'Rédiger ou charger votre écrit réflexif..........';
   // @Output() deltaChange = new EventEmitter();
@@ -46,8 +47,10 @@ export class AppComponent implements OnInit { // implementing OnInit
 
 
   constructor(public dataservice: DataService, elm: ElementRef) {
-    this.myToken = elm.nativeElement.getAttribute('myToken');
-    this.myDomain = elm.nativeElement.getAttribute('myDomain');
+    const root = <HTMLElement>document.querySelector('[role=application]');
+    this.data = root.dataset;
+    this.myToken = this.data.cozyToken;
+    this.myDomain = this.data.cozyDomain;
     // this.value = 'app';
   }
   // constructor(public http: HttpClient, elm: ElementRef) {}

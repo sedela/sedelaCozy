@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
-    "postbuild": "cp ./manifest.webapp dist/",
+    "watch": "ng build --watch",
     "deploy": "git-directory-deploy --directory dist/ --repo=https://$GITHUB_TOKEN@github.com/sedela/sedela.git",
     "test": "ng test",
     "lint": "ng lint",
