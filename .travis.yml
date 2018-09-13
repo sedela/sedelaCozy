@@ -26,3 +26,9 @@ deploy:
     script: yarn deploy --branch=build && yarn cozyPublish
     on:
       branch: master
+  - provider: script
+    repo: sedela/sedela
+    skip-cleanup: true
+    script: yarn deploy --branch=build && yarn cozyPublish
+    on:
+      tags: true
