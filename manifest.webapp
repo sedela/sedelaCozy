@@ -10,7 +10,7 @@
   "locales": {
     "en": {
       "short_description": "Application d'écritures réflexives dans le cas du projet Sedela",
-      "long_descrption": ""
+      "long_description": ""
     }
   },
   "license": "MIT",

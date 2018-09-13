@@ -1,1 +1,11 @@
-<!doctype html><html><head><meta charset="utf-8"><title>sedelaproto</title><base href="BASE_URL"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/x-icon" href="favicon.ico"><div role="application" data-cozy-token="{{.Token}}" data-cozy-domain="{{.Domain}}" data-cozy-locale="{{.Locale}}" data-cozy-app-name="{{.AppName}}" data-cozy-app-editor="{{.AppEditor}}" data-cozy-icon-path="{{.IconPath}}"></div><link href="styles.a11a6ce2968e0c2b1fba.bundle.css" rel="stylesheet"/></head><body><app-root myToken="{{.Token}}" myDomain="{{.Domain}}">Loading...</app-root><script type="text/javascript" src="inline.6ab0907913802addc9aa.bundle.js"></script><script type="text/javascript" src="polyfills.4f858896f10fea738ed9.bundle.js"></script><script type="text/javascript" src="scripts.36c624724711738aeb68.bundle.js"></script><script type="text/javascript" src="main.f022f962d63447843ff9.bundle.js"></script></body></html>
+<!doctype html><html><head><meta charset="utf-8"><title>Sedela</title><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/x-icon" href="favicon.ico">{{.CozyBar}}<link href="styles.271160d996ac5efa9915.bundle.css" rel="stylesheet"/></head><body onload="initCozyBar()"><div role="application" data-cozy-token="{{.Token}}" data-cozy-domain="{{.Domain}}" data-cozy-locale="{{.Locale}}" data-cozy-app-editor="{{.AppEditor}}" data-cozy-app-name="{{.AppName}}" data-cozy-app-name-prefix="{{.AppNamePrefix}}" data-cozy-app-slug="{{.AppSlug}}" data-cozy-icon-path="{{.IconPath}}" myToken="{{.Token}}" myDomain="{{.Domain}}">Loading...</div><script>function initCozyBar() {
+  const root = document.querySelector('[role=application]');
+  const data = root.dataset
+  window.cozy.bar.init({
+    appName: data.cozyAppName,
+    appSlug: data.cozyAppSlug,
+    iconPath: data.cozyIconPath,
+    lang: data.cozyLocale,
+    replaceTitleOnMobile: false
+  });
+}</script><script type="text/javascript" src="inline.56a7de5f96d4ae909b7d.bundle.js"></script><script type="text/javascript" src="polyfills.4f858896f10fea738ed9.bundle.js"></script><script type="text/javascript" src="scripts.36c624724711738aeb68.bundle.js"></script><script type="text/javascript" src="main.cba76beeb4b673148308.bundle.js"></script></body></html>
