@@ -2,7 +2,7 @@
   "name": "Sedela",
   "editor": "IMTAtlantique",
   "slug": "sedela",
-  "icon": "assets/sedela.jpg",
+  "icon": "assets/sedelaLogo.svg",
   "type": "webapp",
   "developer": {
     "name": "NIANG Mouhamadou"
@@ -14,7 +14,7 @@
     }
   },
   "license": "MIT",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "permissions": {
     "apps": {
       "type": "io.cozy.apps",
