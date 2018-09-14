@@ -22,7 +22,7 @@ export class DataService {
 
   public getDelta() {
       const query =  this.client.query(
-        this.client.find('io-cozy-mydbs').where({id: 'mydochtml'})
+        this.client.find('io.sedela.writings').where({id: 'mydochtml'})
       ).then(
         ({ data }) => this.dbdata = data
       );
@@ -36,7 +36,7 @@ export class DataService {
   public postDelta(opss: any) {
     const delta  = {id: 'mydochtml', ops: opss, create_date: new Date(), last_modif: new Date()};
     this.client.mutate(
-        this.client.create('io-cozy-mydbs', delta)
+        this.client.create('io.sedela.writings', delta)
          ).then(
        ({ data }) => console.log(data.id)
    );
@@ -46,7 +46,7 @@ export class DataService {
 
   public getForum() {
     const query =  this.client.query(
-      this.client.findAll('io-cozy-forums').sortBy({date_post: 'desc'})
+      this.client.findAll('io.sedela.comments').sortBy({date_post: 'desc'})
     ).then(
       ({ data }) => console.log(data)
     );
@@ -56,7 +56,7 @@ export class DataService {
 
   public postForum(posts: any) {
     this.client.mutate(
-        this.client.create('io-cozy-forums', posts)
+        this.client.create('io.sedela.comments', posts)
          ).then(
        ({ data }) => console.log(data)
    );
@@ -64,7 +64,7 @@ export class DataService {
   }
 
    public deleteForum() {
-        this.client.delete('io-cozy-forums');
+        this.client.delete('io.sedela.comments');
   }
 
 }

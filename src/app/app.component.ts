@@ -22,7 +22,7 @@ import { QuillDeltaToHtmlConverter } from './quill-delta-to-html/src/QuillDeltaT
        <button type="submit" class="btn btn-success"(click)=getDeltaOps()>Sauvegarder Ecrit réflexif</button>
     </div>-->
     <p></p>
-    <div id="droite"> <app-forum></app-forum> </div>
+    <div id="droite"> <app-forum ></app-forum> </div>
      </div>
           `,*/
   styles: [],
@@ -43,7 +43,8 @@ export class AppComponent implements OnInit { // implementing OnInit
   htmls: any = 'Rédiger ou charger votre écrit réflexif..........';
   // @Output() deltaChange = new EventEmitter();
   delta: any;
-  post: any;
+  tabpost: any;
+   post: any;
 
 
   constructor(public dataservice: DataService, elm: ElementRef) {
@@ -70,7 +71,7 @@ export class AppComponent implements OnInit { // implementing OnInit
     /**this.dataservice.getDelta().subscribe(data => {
       this.delta = data;
     });*/
-    this.dataservice.getForum();
+    this.tabpost = this.dataservice.getForum();
 
    // this.dataservice.deleteForum();
     // this.deltaChange = new EventEmitter();

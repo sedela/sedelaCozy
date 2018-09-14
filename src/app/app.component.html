@@ -1,12 +1,13 @@
 <h3>Sedela project Default editor</h3>
 <div class="float-md-left">   
+     <app-model [(html)]="htmls" (htmlChange)='myValueChange($event);' 
+           (deltaChange)='myDeltaChange($event);'> </app-model>
        <button mdbBtn type="button" color="default" class="waves-light" mdbWavesEffect (click)="getHtmlFromDelta()">Open Document </button>
 
           <button mdbBtn type="submit" color="primary" class="waves-light"
 				 mdbWavesEffect (click)=getDeltaOps()>Save Document
            </button>
-           <app-model [(html)]="htmls" (htmlChange)='myValueChange($event);' 
-           (deltaChange)='myDeltaChange($event);'> </app-model>
+           
     
 </div> 
 
