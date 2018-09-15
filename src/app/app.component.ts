@@ -36,7 +36,7 @@ import { QuillDeltaToHtmlConverter } from './quill-delta-to-html/src/QuillDeltaT
 
 export class AppComponent implements OnInit { // implementing OnInit
   // compteur: any;
-  // @Input()
+ // @Input()  post: any;
   @Input() myToken: any = 2;
   @Input() data: any = {};
   @Input() myDomain: any = 3;
@@ -44,7 +44,7 @@ export class AppComponent implements OnInit { // implementing OnInit
   // @Output() deltaChange = new EventEmitter();
   delta: any;
   tabpost: any;
-   post: any;
+  post: any;
 
 
   constructor(public dataservice: DataService, elm: ElementRef) {
@@ -120,7 +120,9 @@ export class AppComponent implements OnInit { // implementing OnInit
   }
 
   myPostChange(event) {
-    this.post = event.value;
+    this.post = event;
+  console.log('this  event: ',event)
+    console.log('this.post: ',this.post)
     this.dataservice.postForum(this.post);
   }
 }

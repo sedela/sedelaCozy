@@ -55,8 +55,10 @@ export class DataService {
   }
 
   public postForum(posts: any) {
+    //const post = {subject: posts.subject, comment: posts.subject, date_post: posts.date };
+    const   post = {posts: posts}
     this.client.mutate(
-        this.client.create('io.sedela.comments', posts)
+        this.client.create('io.sedela.comments', post)
          ).then(
        ({ data }) => console.log(data)
    );
