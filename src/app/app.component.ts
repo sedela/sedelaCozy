@@ -47,9 +47,11 @@ export class AppComponent implements OnInit { // implementing OnInit
   delta: any;
   tabpost: any;
   post: any;
+  listedocument:  Array<any>;
 
   contactFormModalDocumentName = new FormControl('', Validators.required);
-  constructor(public dataservice: DataService, elm: ElementRef) {
+  documentControl = new FormControl('', [Validators.required]);
+  constructor(public dataservice: DataService) {
     document.addEventListener('DOMContentLoaded', () => {
       const root = <HTMLElement>document.querySelector('[role=application]');
       const data = root.dataset
@@ -73,6 +75,7 @@ export class AppComponent implements OnInit { // implementing OnInit
     /**this.dataservice.getDelta().subscribe(data => {
       this.delta = data;
     });*/
+    this.listedocument = this.dataservice.getDelta();
     this.tabpost = this.dataservice.getForum();
 
    // this.dataservice.deleteForum();
@@ -86,8 +89,9 @@ export class AppComponent implements OnInit { // implementing OnInit
   getHtmlFromDelta() {
     // let delta1 = this.getDeltaOps();
     // tslint:disable-next-line:prefer-const
-     this.delta = this.dataservice.getDelta();
-     console.log('get query from service: ',this.delta);
+     //this.delta = this.dataservice.getDelta();
+     this.delta =  this.documentControl.value;
+     console.log('get query from service: ', this.delta);
     let qdc = new QuillDeltaToHtmlConverter(this.delta['ops'],
       { classPrefix: 'noz' });
     this.delta = qdc;

@@ -22,7 +22,7 @@ export class DataService {
 
   public getDelta() {
       const query =  this.client.query(
-        this.client.find('io.sedela.writings').where({id: 'mydochtml'})
+        this.client.findAll('io.sedela.writings').sortBy({last_modif: 'desc'})
       ).then(
         ({ data }) => this.dbdata = data
       );

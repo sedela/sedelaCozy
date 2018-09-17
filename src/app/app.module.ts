@@ -16,6 +16,11 @@ import { AppForumComponent } from './appforum.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
+//Angular material
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MatSelectModule } from '@angular/material/select';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +34,9 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     ReactiveFormsModule,
     QuillModule,
     HttpClientModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    BrowserAnimationsModule,
+    MatSelectModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
