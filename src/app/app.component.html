@@ -1,8 +1,9 @@
 <h3>Sedela project Default editor</h3>
+
 <div class="float-md-left">   
      <app-model [(html)]="htmls" (htmlChange)='myValueChange($event);' 
            (deltaChange)='myDeltaChange($event);'> </app-model>
-       <button mdbBtn type="button" color="default" class="waves-light" mdbWavesEffect (click)= "framebis.show()" >Open Document </button>
+       <button mdbBtn type="button" color="default" class="waves-light" mdbWavesEffect (click)= "getHtmlFromDelta()" >Open Document </button>
 
           <button mdbBtn type="submit" color="primary" class="waves-light"
 				 mdbWavesEffect (click)="frame.show()">Save Document
@@ -35,9 +36,16 @@
   </div>
 </div>
    
-<!--Choisir doucument à ouvrir-->
+</div> 
+
+<div class="float-ld-right">  
+    <app-forum (postChange)='myPostChange($event);'></app-forum> 
+</div> 
+
+
+<!--Choisir doucument à 
 <mat-form-field>
-    <mat-select #framebis placeholder="choose document to open" (stateChanges)="getHtmlFromDelta()" [formControl]="documentControl" required>
+    <mat-select placeholder="choose document to open"  [formControl]="documentControl" required>
       <mat-option>--</mat-option>
       <mat-option *ngFor="let document of listedocument" [value]="document">
         {{document.id}}
@@ -46,9 +54,5 @@
     <mat-error *ngIf="documentControl.hasError('required')">Please choose a document</mat-error>
     <mat-hint>{{documentControl.value?.ops}}</mat-hint>
   </mat-form-field>
+ouvrir-->
     
-</div> 
-
-<div class="float-ld-right">  
-    <app-forum (postChange)='myPostChange($event);'></app-forum> 
-</div> 

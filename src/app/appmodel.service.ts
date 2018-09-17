@@ -12,6 +12,7 @@ export class DataService {
 
    client: any;
    dbdata: any;
+    dballdata: any;
    setConnect(tokenparam, domain) {
     const  cozyclient = new CozyClient({
       uri: 'http://' + domain,
@@ -22,7 +23,7 @@ export class DataService {
 
   public getDelta() {
       const query =  this.client.query(
-        this.client.findAll('io.sedela.writings').sortBy({last_modif: 'desc'})
+        this.client.find('io.sedela.writings').where({id: 'mydocument'})
       ).then(
         ({ data }) => this.dbdata = data
       );
@@ -32,7 +33,18 @@ export class DataService {
    return this.dbdata[0];
 
   }
+  public getAllDocs() {
+      const query =  this.client.query(
+        this.client.find('io.sedela.writings')
+      ).then(
+        ({ data }) => this.dballdata = data
+      );
 
+   console.log('query de all data service: ', this.dballdata);
+    // return query;
+   return this.dballdata[0];
+
+  }
   public postDelta(opss: any, name: string) {
     const document  = {id: name, ops: opss, create_date: new Date(), last_modif: new Date()};
     this.client.mutate(
@@ -46,7 +58,7 @@ export class DataService {
 
   public getForum() {
     const query =  this.client.query(
-      this.client.findAll('io.sedela.comments').sortBy({date_post: 'desc'})
+      this.client.find('io.sedela.comments').sortBy({date_post: 'desc'})
     ).then(
       ({ data }) => console.log(data)
     );

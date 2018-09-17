@@ -18,8 +18,6 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 //Angular material
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -34,9 +32,7 @@ import { MatSelectModule } from '@angular/material/select';
     ReactiveFormsModule,
     QuillModule,
     HttpClientModule,
-    MDBBootstrapModule.forRoot(),
-    BrowserAnimationsModule,
-    MatSelectModule
+    MDBBootstrapModule.forRoot()
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
