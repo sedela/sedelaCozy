@@ -33,10 +33,10 @@ export class DataService {
 
   }
 
-  public postDelta(opss: any) {
-    const delta  = {id: 'mydochtml', ops: opss, create_date: new Date(), last_modif: new Date()};
+  public postDelta(opss: any, name: string) {
+    const document  = {id: name, ops: opss, create_date: new Date(), last_modif: new Date()};
     this.client.mutate(
-        this.client.create('io.sedela.writings', delta)
+        this.client.create('io.sedela.writings', document)
          ).then(
        ({ data }) => console.log(data.id)
    );

@@ -1,4 +1,5 @@
 import { Component, OnInit, Injectable, Input, ElementRef } from '@angular/core';
+import { Validators, FormControl } from '@angular/forms';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/toPromise';
@@ -40,13 +41,14 @@ export class AppComponent implements OnInit { // implementing OnInit
   @Input() myToken: any = 2;
   @Input() data: any = {};
   @Input() myDomain: any = 3;
+  @Input() documentname: string;
   htmls: any = 'Rédiger ou charger votre écrit réflexif..........';
   // @Output() deltaChange = new EventEmitter();
   delta: any;
   tabpost: any;
   post: any;
 
-
+  contactFormModalDocumentName = new FormControl('', Validators.required);
   constructor(public dataservice: DataService, elm: ElementRef) {
     document.addEventListener('DOMContentLoaded', () => {
       const root = <HTMLElement>document.querySelector('[role=application]');
@@ -58,7 +60,7 @@ export class AppComponent implements OnInit { // implementing OnInit
         lang: data.cozyLocale,
         replaceTitleOnMobile: false
       });
-    })
+    });
     const root = <HTMLElement>document.querySelector('[role=application]');
     this.data = root.dataset;
     this.myToken = this.data.cozyToken;
@@ -85,7 +87,7 @@ export class AppComponent implements OnInit { // implementing OnInit
     // let delta1 = this.getDeltaOps();
     // tslint:disable-next-line:prefer-const
      this.delta = this.dataservice.getDelta();
-     console.log('get query from service: ',this.delta)
+     console.log('get query from service: ',this.delta);
     let qdc = new QuillDeltaToHtmlConverter(this.delta['ops'],
       { classPrefix: 'noz' });
     this.delta = qdc;
@@ -95,8 +97,10 @@ export class AppComponent implements OnInit { // implementing OnInit
 
   }
   getDeltaOps() {
+    this.documentname = this.contactFormModalDocumentName.value;
+    console.log('this.documentname:', this.documentname);
     this.delta = this.delta;
-    this.dataservice.postDelta(this.delta['ops']);
+    this.dataservice.postDelta(this.delta['ops'], this.documentname);
     // this.deltaChange = new EventEmitter(this.delta);
     console.log(this.delta);
   }
@@ -121,8 +125,8 @@ export class AppComponent implements OnInit { // implementing OnInit
 
   myPostChange(event) {
     this.post = event;
-  console.log('this  event: ',event)
-    console.log('this.post: ',this.post)
+  console.log('this  event: ', event);
+    console.log('this.post: ', this.post);
     this.dataservice.postForum(this.post);
   }
 }
