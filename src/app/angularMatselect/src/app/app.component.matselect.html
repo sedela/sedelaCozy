@@ -15,7 +15,7 @@
 <form [formGroup]="contactForm"  novalidate>
   <div formGroupName="personalData" novalidate>
     <select formControlName="country">
-      <option *ngFor="let country of countries" [value]="country.short">{{country.short}}</option>
+      <option *ngFor="let country of countries" [value]="country.short">{{country.full}}</option>
     </select>
   
   </div>
