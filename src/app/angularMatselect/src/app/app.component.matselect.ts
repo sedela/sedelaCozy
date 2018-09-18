@@ -40,5 +40,8 @@ export class AppMatSelectComponent  {
       text: new FormControl()
     });
   }
-
+  myListDocumentChange(event) {
+    console.log('event liste document:', event);
+    this.countries = event;
+  }
 }
