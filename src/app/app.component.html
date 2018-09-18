@@ -1,4 +1,4 @@
-<h3>Sedela project Default editor</h3>
+<!--<h3>Sedela project Default editor</h3>
 
 <div class="float-md-left">   
      <app-model [(html)]="htmls" (htmlChange)='myValueChange($event);' 
@@ -7,9 +7,10 @@
 
           <button mdbBtn type="submit" color="primary" class="waves-light"
 				 mdbWavesEffect (click)="frame.show()">Save Document
-           </button>
+           </button> 
+          -->
 
- <!-- Save document-->
+ <!-- Save document
 <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -41,6 +42,7 @@
 <div class="float-ld-right">  
     <app-forum (postChange)='myPostChange($event);'></app-forum> 
 </div> 
+-->
 
 
 <!--Choisir doucument à 
@@ -56,3 +58,86 @@
   </mat-form-field>
 ouvrir-->
     
+
+<!--mat select-->
+
+<mat-toolbar color="primary">
+  Angular Material - mat-select examples
+</mat-toolbar>
+
+<div style="padding: 20px;">
+
+  <h1>Model Forms</h1>
+  
+  <div style="padding: 0 0 20px 20px">
+  
+    <h3>Value string</h3>
+    
+    <mat-form-field>
+      <mat-select name="countryString" [(value)]="selectedCountry" placeholder="Country">
+        <mat-option [value]="'GB'">Great Britain</mat-option>
+        <mat-option [value]="'US'">United States</mat-option>
+        <mat-option [value]="'CA'">Canada</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    &nbsp;&nbsp;
+    Selected = {{selectedCountry}}
+    
+  </div>
+  
+  <div style="padding: 20px">
+  
+    <h3>Value variable</h3>
+    
+    <mat-form-field>
+      <mat-select name="countryVaraible" [(value)]="selectedCountry" placeholder="Country">
+        <mat-option *ngFor="let country of countries" [value]="country.short">
+          {{country.full}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    &nbsp;&nbsp;
+    Selected = {{selectedCountry}}
+    
+  </div>
+  
+  
+  
+  <h1>Reactive Forms</h1>
+    
+  <div style="padding: 0 0 20px 20px">
+  
+    <h3>Value string</h3>
+    
+    <mat-form-field>
+      <mat-select name="countryReactiveString" [formControl]="selectedCountryControl" placeholder="Country">
+        <mat-option [value]="'GB'">Great Britain</mat-option>
+        <mat-option [value]="'US'">United States</mat-option>
+        <mat-option [value]="'CA'">Canada</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    &nbsp;&nbsp;
+    Selected = {{selectedCountryControl.value}}
+    
+  </div>
+  
+  <div style="padding: 20px">
+  
+    <h3>Value variable</h3>
+    
+    <mat-form-field>
+      <mat-select name="countryReactiveVaraible" [formControl]="selectedCountryControl" placeholder="Country">
+        <mat-option *ngFor="let country of countries" [value]="country.short">
+          {{country.full}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    &nbsp;&nbsp;
+    Selected = {{selectedCountryControl.value}}
+  </div>
+
+</div>

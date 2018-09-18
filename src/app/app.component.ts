@@ -43,6 +43,27 @@ export class AppComponent implements OnInit { // implementing OnInit
   @Input() data: any = {};
   @Input() myDomain: any = 3;
   @Input() documentname: string;
+
+  //test mat-select
+  countries: any = [
+    {
+      full: "Great Britain",
+      short: "GB"
+    },
+    {
+      full: "United States",
+      short: "US"
+    },
+    {
+      full: "Canada",
+      short: "CA"
+    }
+  ];
+  selectedCountry: string = "GB";
+  
+  selectedCountryControl = new FormControl(this.selectedCountry);
+
+  //fin test mat select
   htmls: any = 'Rédiger ou charger votre écrit réflexif..........';
   // @Output() deltaChange = new EventEmitter();
   delta: any;

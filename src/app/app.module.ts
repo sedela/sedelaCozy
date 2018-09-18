@@ -17,7 +17,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 //Angular material
-
+import { MatToolbarModule, MatFormFieldModule, MatSelectModule } from '@angular/material';
 
 
 @NgModule({
@@ -32,7 +32,10 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     ReactiveFormsModule,
     QuillModule,
     HttpClientModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    MatToolbarModule, 
+    MatFormFieldModule, 
+    MatSelectModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
