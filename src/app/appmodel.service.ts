@@ -52,7 +52,7 @@ export class DataService {
          ).then(
        ({ data }) => console.log(data.id)
    );
-
+    return this.getAllDocs();
   }
 
 

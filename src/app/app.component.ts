@@ -49,7 +49,7 @@ export class AppComponent implements OnInit { // implementing OnInit
   delta: any;
   tabpost: any;
   post: any;
-  listedocument:  Array<any>;
+  listedocument: Array<any> = [];
   contactFormModalDocumentName = new FormControl('', Validators.required);
 
 
@@ -77,8 +77,8 @@ export class AppComponent implements OnInit { // implementing OnInit
     /**this.dataservice.getDelta().subscribe(data => {
       this.delta = data;
     });*/
-     this.listedocument = this.dataservice.getAllDocs();
-     console.log('this.listedocument :', this.listedocument);
+    this.listedocument = this.dataservice.getAllDocs();
+     //console.log('this.listedocument :', this.listedocument);
      this.tabpost = this.dataservice.getForum();
 
   }
@@ -92,11 +92,12 @@ export class AppComponent implements OnInit { // implementing OnInit
     // tslint:disable-next-line:prefer-const
      this.delta = this.dataservice.getDelta();
      //this.delta =  this.documentControl.value;
-     //this.listedocument = this.dataservice.getDelta();
-     console.log('get query from service: ', this.listedocument);
+
     let qdc = new QuillDeltaToHtmlConverter(this.delta['ops'],
       { classPrefix: 'noz' });
     this.delta = qdc;
+    //this.listedocument = this.dataservice.getAllDocs();
+    console.log('get query from service: ', this.listedocument);
     console.log('delta: ', this.delta);
    console.log('get query from all data: ', this.dataservice.getAllDocs());
  console.log('longeur: ', this.dataservice.getAllDocs().length);
@@ -107,9 +108,10 @@ export class AppComponent implements OnInit { // implementing OnInit
     this.documentname = this.contactFormModalDocumentName.value;
     console.log('this.documentname:', this.documentname);
     this.delta = this.delta;
-    this.dataservice.postDelta(this.delta['ops'], this.documentname);
+    const docDelta = this.dataservice.postDelta(this.delta['ops'], this.documentname);
+    this.listedocument.push(docDelta);
     // this.deltaChange = new EventEmitter(this.delta);
-    console.log(this.delta);
+    console.log('deltaoperation', this.delta);
   }
 
   /**   AfficherDelta(){
@@ -123,6 +125,7 @@ export class AppComponent implements OnInit { // implementing OnInit
   }
 
   myDeltaChange(event) {
+    console.log('event delta:', event);
     this.delta = event.value;
   }
 

@@ -18,8 +18,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 //Angular material
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import { MatToolbarModule, MatFormFieldModule, MatSelectModule } from '@angular/material';
+
 import { AppMatSelectComponent } from './angularMatselect/src/app/app.component.matselect';
 
 
@@ -36,11 +35,7 @@ import { AppMatSelectComponent } from './angularMatselect/src/app/app.component.
     ReactiveFormsModule,
     QuillModule,
     HttpClientModule,
-    MDBBootstrapModule.forRoot(),
-    NoopAnimationsModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    MatSelectModule
+    MDBBootstrapModule.forRoot()
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [

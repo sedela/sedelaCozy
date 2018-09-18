@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 
@@ -9,11 +9,12 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class AppMatSelectComponent  {
   contactForm: FormGroup;
+  @Input() countries: Array <any> = [];
   constructor() {
     this.contactForm = this.createFormGroup();
    }
 
-  countries = [
+  /**countries = [
     {
       full: 'Great Britain',
       short: 'GB'
@@ -26,7 +27,7 @@ export class AppMatSelectComponent  {
       full: 'Canada',
       short: 'CA'
     }
-  ];
+  ];*/
   //selectedCountry: any = 'GB';
   //selectedCountryControl = new FormControl(this.selectedCountry);
 
@@ -39,6 +40,5 @@ export class AppMatSelectComponent  {
       text: new FormControl()
     });
   }
- 
 
 }

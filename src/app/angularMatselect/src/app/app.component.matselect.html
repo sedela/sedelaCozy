@@ -15,7 +15,8 @@
 <form [formGroup]="contactForm"  novalidate>
   <div formGroupName="personalData" novalidate>
     <select formControlName="country">
-      <option *ngFor="let country of countries" [value]="country.short">{{country.full}}</option>
+      <option value="">Please select a file</option>
+      <option *ngFor="let country of countries" [value]="country.id">{{country.id}}</option>
     </select>
   
   </div>
