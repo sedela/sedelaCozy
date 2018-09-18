@@ -12,16 +12,13 @@
   </div>
 -->
 
-<form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+<form [formGroup]="contactForm"  novalidate>
   <div formGroupName="personalData" novalidate>
     <select formControlName="country">
-      <option *ngFor="let country of countries" [value]="country">{{country.short}}</option>
-      {{country.full}}
+      <option *ngFor="let country of countries" [value]="country.short">{{country.short}}</option>
     </select>
-    &nbsp;&nbsp;
-    Selected = {{selectedCountryControl.value}}
+  
   </div>
-  <button type="submit" [disabled]="contactForm.pristine">Save</button>
-  <button type="reset" (click)="revert()" [disabled]="contactForm.pristine">Revert</button>
+
 </form>
   

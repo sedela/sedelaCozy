@@ -8,13 +8,12 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: [ './app.component.matselect.scss' ]
 })
 export class AppMatSelectComponent  {
-  
   contactForm: FormGroup;
   constructor() {
     this.contactForm = this.createFormGroup();
    }
 
-  countries: any = [
+  countries = [
     {
       full: 'Great Britain',
       short: 'GB'
@@ -28,15 +27,16 @@ export class AppMatSelectComponent  {
       short: 'CA'
     }
   ];
-  selectedCountry: any = 'GB';
-  selectedCountryControl = new FormControl(this.selectedCountry);
+  //selectedCountry: any = 'GB';
+  //selectedCountryControl = new FormControl(this.selectedCountry);
 
   // Step 1
   createFormGroup() {
     return new FormGroup({
       personalData: new FormGroup({
         country: new FormControl()
-      })
+      }),
+      text: new FormControl()
     });
   }
 }
