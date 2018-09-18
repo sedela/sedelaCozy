@@ -1,5 +1,4 @@
-<!--<h3>Sedela project Default editor</h3>-->
-<my-app></my-app>
+<app-select></app-select>
 <div class="float-md-left">   
      <app-model [(html)]="htmls" (htmlChange)='myValueChange($event);' 
            (deltaChange)='myDeltaChange($event);'> </app-model>
@@ -8,7 +7,6 @@
           <button mdbBtn type="submit" color="primary" class="waves-light"
 				 mdbWavesEffect (click)="frame.show()">Save Document
            </button> 
-          -->
 
  <!-- Save document-->
 <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"

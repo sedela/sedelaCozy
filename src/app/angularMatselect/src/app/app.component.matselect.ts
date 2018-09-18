@@ -3,12 +3,12 @@ import { FormControl } from '@angular/forms';
 
 
 @Component({
-  selector: 'my-app',
+  selector: 'app-select',
   templateUrl: './app.component.matselect.html',
   styleUrls: [ './app.component.matselect.scss' ]
 })
 export class AppMatSelectComponent  {
-  selectedCountry = 'GB';
+  
   constructor() {}
 
   countries: any = [
@@ -25,6 +25,7 @@ export class AppMatSelectComponent  {
       short: 'CA'
     }
   ];
+  selectedCountry: any = 'GB';
   selectedCountryControl = new FormControl(this.selectedCountry);
 
 }
