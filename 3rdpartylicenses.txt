@@ -77,7 +77,7 @@ MIT
 MIT
 MIT
 
-@angular/animations@6.1.7
+@angular/animations@5.2.11
 MIT
 MIT
 
