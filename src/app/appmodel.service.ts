@@ -28,7 +28,7 @@ export class DataService {
         ({ data }) => this.dbdata = data
       );
 
-   console.log('query de data service: ', this.dbdata);
+   //console.log('query de data service: ', this.dbdata);
     // return query;
    return this.dbdata[0];
 
@@ -39,8 +39,10 @@ export class DataService {
       ).then(
         ({ data }) => this.dballdata = data
       );
-
-   console.log('query de all data service: ', this.dballdata);
+  
+  //console.log('query: ', query);
+  //console.log('query: ', query[0].length);
+   //console.log('query de all data service: ', this.dballdata);
     // return query;
    return this.dballdata[0];
 

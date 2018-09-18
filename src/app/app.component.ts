@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable, Input, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Component, OnInit, Injectable, Input} from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
@@ -43,7 +43,7 @@ export class AppComponent implements OnInit { // implementing OnInit
   @Input() data: any = {};
   @Input() myDomain: any = 3;
   @Input() documentname: string;
-  @Output() listeDocumentChange = new EventEmitter();
+  //@Output() listeDocumentChange = new EventEmitter();
 
   htmls: any = 'Rédiger ou charger votre écrit réflexif..........';
   // @Output() deltaChange = new EventEmitter();
@@ -78,8 +78,8 @@ export class AppComponent implements OnInit { // implementing OnInit
     /**this.dataservice.getDelta().subscribe(data => {
       this.delta = data;
     });*/
-    this.listedocument = this.dataservice.getAllDocs();
-     //console.log('this.listedocument :', this.listedocument);
+    //this.listedocument = this.dataservice.getAllDocs();
+    //console.log('this.listedocument :', this.listedocument);
      this.tabpost = this.dataservice.getForum();
 
   }
@@ -87,7 +87,10 @@ export class AppComponent implements OnInit { // implementing OnInit
   /**  getHTML(){
      return this.htmls;
    }*/
-
+   
+    addDocument(documents) {
+     this.listedocument =  [...this.listedocument ,documents];
+  }
   getHtmlFromDelta() {
     // let delta1 = this.getDeltaOps();
     // tslint:disable-next-line:prefer-const
@@ -99,7 +102,6 @@ export class AppComponent implements OnInit { // implementing OnInit
     this.delta = qdc;
     console.log('delta: ', this.delta);
    console.log('get query from all data: ', this.dataservice.getAllDocs());
- console.log('longeur: ', this.dataservice.getAllDocs().length);
     this.htmls = qdc.convert();
     //  this.deltaChange.emit(this.htmls);
   }
@@ -108,8 +110,9 @@ export class AppComponent implements OnInit { // implementing OnInit
     console.log('this.documentname:', this.documentname);
     this.delta = this.delta;
     const docDelta = this.dataservice.postDelta(this.delta['ops'], this.documentname);
-    this.listedocument.push(docDelta);
-    this.listeDocumentChange.emit(this.listedocument);
+    this.addDocument(docDelta);
+   // this.listeDocumentChange.emit(this.listedocument);
+   console.log('this.listedocument: ', this.listedocument);
     // this.deltaChange = new EventEmitter(this.delta);
     console.log('deltaoperation', this.delta);
   }

@@ -1,18 +1,20 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 
 @Component({
   selector: 'app-select',
   templateUrl: './app.component.matselect.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: [ './app.component.matselect.scss' ]
 })
 export class AppMatSelectComponent  {
   contactForm: FormGroup;
   @Input() countries: Array <any> = [];
+
   constructor() {
     this.contactForm = this.createFormGroup();
-   }
+      }
 
   /**countries = [
     {
