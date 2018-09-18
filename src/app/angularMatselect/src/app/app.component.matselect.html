@@ -1,4 +1,4 @@
-  <div style="padding: 20px">
+  <!--<div style="padding: 20px">
     <h3>Value variable</h3>
     <mat-form-field>
       <mat-select name="countryReactiveVaraible" [formControl]="selectedCountryControl" placeholder="Country">
@@ -10,5 +10,18 @@
     &nbsp;&nbsp;
     Selected = {{selectedCountryControl.value}}
   </div>
+-->
 
-
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+  <div formGroupName="personalData" novalidate>
+    <select formControlName="country">
+      <option *ngFor="let country of countries" [value]="country">{{country.short}}</option>
+      {{country.full}}
+    </select>
+    &nbsp;&nbsp;
+    Selected = {{selectedCountryControl.value}}
+  </div>
+  <button type="submit" [disabled]="contactForm.pristine">Save</button>
+  <button type="reset" (click)="revert()" [disabled]="contactForm.pristine">Revert</button>
+</form>
+  

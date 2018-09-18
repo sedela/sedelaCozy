@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -9,7 +9,10 @@ import { FormControl } from '@angular/forms';
 })
 export class AppMatSelectComponent  {
   
-  constructor() {}
+  contactForm: FormGroup;
+  constructor() {
+    this.contactForm = this.createFormGroup();
+   }
 
   countries: any = [
     {
@@ -28,4 +31,12 @@ export class AppMatSelectComponent  {
   selectedCountry: any = 'GB';
   selectedCountryControl = new FormControl(this.selectedCountry);
 
+  // Step 1
+  createFormGroup() {
+    return new FormGroup({
+      personalData: new FormGroup({
+        country: new FormControl()
+      })
+    });
+  }
 }
