@@ -11,20 +11,23 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TypicodeInterceptor } from './typicode.interceptor';
 import { AppModelComponent } from './appmodel.component';
 import { AppForumComponent } from './appforum.component';
-//mdbbootstrap module
+
+// mdbbootstrap module
 
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 //Angular material
 import { MatToolbarModule, MatFormFieldModule, MatSelectModule } from '@angular/material';
+import { AppMatSelectComponent } from './angularMatselect/src/app/app.component.matselect';
 
 
 @NgModule({
   declarations: [
     AppComponent,
    AppModelComponent,
-   AppForumComponent
+   AppForumComponent,
+   AppMatSelectComponent
   ],
   imports: [
     BrowserModule,
@@ -33,8 +36,8 @@ import { MatToolbarModule, MatFormFieldModule, MatSelectModule } from '@angular/
     QuillModule,
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
-    MatToolbarModule, 
-    MatFormFieldModule, 
+    MatToolbarModule,
+    MatFormFieldModule,
     MatSelectModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],

@@ -44,34 +44,12 @@ export class AppComponent implements OnInit { // implementing OnInit
   @Input() myDomain: any = 3;
   @Input() documentname: string;
 
-  //test mat-select
-  countries: any = [
-    {
-      full: "Great Britain",
-      short: "GB"
-    },
-    {
-      full: "United States",
-      short: "US"
-    },
-    {
-      full: "Canada",
-      short: "CA"
-    }
-  ];
-  selectedCountry: string = "GB";
-  
-  selectedCountryControl = new FormControl(this.selectedCountry);
-
-  //fin test mat select
   htmls: any = 'Rédiger ou charger votre écrit réflexif..........';
   // @Output() deltaChange = new EventEmitter();
   delta: any;
   tabpost: any;
   post: any;
   listedocument:  Array<any>;
-    
- 
   contactFormModalDocumentName = new FormControl('', Validators.required);
 
 
@@ -99,9 +77,8 @@ export class AppComponent implements OnInit { // implementing OnInit
     /**this.dataservice.getDelta().subscribe(data => {
       this.delta = data;
     });*/
-    
-       this.listedocument = this.dataservice.getAllDocs();
-       console.log('this.listedocument :', this.listedocument);
+     this.listedocument = this.dataservice.getAllDocs();
+     console.log('this.listedocument :', this.listedocument);
      this.tabpost = this.dataservice.getForum();
 
   }
@@ -125,8 +102,6 @@ export class AppComponent implements OnInit { // implementing OnInit
  console.log('longeur: ', this.dataservice.getAllDocs().length);
     this.htmls = qdc.convert();
     //  this.deltaChange.emit(this.htmls);
-    
-    
   }
   getDeltaOps() {
     this.documentname = this.contactFormModalDocumentName.value;
