@@ -12,7 +12,7 @@
   </div>
 -->
 
-<form [formGroup]="contactForm"  novalidate>
+<!--<form [formGroup]="contactForm"  novalidate>
   <div formGroupName="personalData" novalidate>
     <select formControlName="country">
       <option value="">Please select a file</option>
@@ -21,5 +21,16 @@
   
   </div>
 
+</form> -->
+
+
+<form [formGroup]="countryForm">
+ <select formControlName="countryControl">
+    <option value="">Please select a file</option>
+   <option [ngValue]="country" *ngFor="let country of countries">{{country.id}}</option>
+ </select>
+<input type="text" #name placeholder="Add country name">
+<input type="text" #code placeholder="Add country code">
+<button (click)="addNewOption(name.value, code.value)">Add to SELECT</button>
 </form>
   

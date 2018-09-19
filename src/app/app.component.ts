@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable, Input} from '@angular/core';
-import { Validators, FormControl } from '@angular/forms';
+import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/toPromise';
@@ -44,17 +44,18 @@ export class AppComponent implements OnInit { // implementing OnInit
   @Input() myDomain: any = 3;
   @Input() documentname: string;
   //@Output() listeDocumentChange = new EventEmitter();
-
+  country: any;
   htmls: any = 'Rédiger ou charger votre écrit réflexif..........';
   // @Output() deltaChange = new EventEmitter();
   delta: any;
   tabpost: any;
   post: any;
+  docDelta;
   listedocument: Array<any> = [];
   contactFormModalDocumentName = new FormControl('', Validators.required);
+  countryForm: FormGroup;
 
-
-  constructor(public dataservice: DataService) {
+  constructor(public dataservice: DataService, private fb: FormBuilder) {
     document.addEventListener('DOMContentLoaded', () => {
       const root = <HTMLElement>document.querySelector('[role=application]');
       const data = root.dataset
@@ -72,13 +73,14 @@ export class AppComponent implements OnInit { // implementing OnInit
     this.myDomain = this.data.cozyDomain;
     // this.value = 'app';
   }
-  // constructor(public http: HttpClient, elm: ElementRef) {}
+  // constructor(public http: HttpClient, ) {}
   ngOnInit(): void { // adding the lifecycle hook ngOnInit
     this.dataservice.setConnect(this.myToken, this.myDomain);
-    /**this.dataservice.getDelta().subscribe(data => {
-      this.delta = data;
-    });*/
-    //this.listedocument = this.dataservice.getAllDocs();
+     this.countryForm = this.fb.group({
+            countryControl: new FormControl('', Validators.required)
+        });
+     if(((this.dataservice.getAllDocs()).length)!=0)
+    	 this.listedocument = this.dataservice.getAllDocs(); 
     //console.log('this.listedocument :', this.listedocument);
      this.tabpost = this.dataservice.getForum();
 
@@ -89,7 +91,8 @@ export class AppComponent implements OnInit { // implementing OnInit
    }*/
    
     addDocument(documents) {
-     this.listedocument =  [...this.listedocument ,documents];
+     //this.listedocument =  [...this.listedocument ,documents];
+     this.listedocument.push(documents); 
   }
   getHtmlFromDelta() {
     // let delta1 = this.getDeltaOps();
@@ -101,20 +104,28 @@ export class AppComponent implements OnInit { // implementing OnInit
       { classPrefix: 'noz' });
     this.delta = qdc;
     console.log('delta: ', this.delta);
-   console.log('get query from all data: ', this.dataservice.getAllDocs());
     this.htmls = qdc.convert();
     //  this.deltaChange.emit(this.htmls);
   }
+
+   getHtmlFromDeltaWithPram() {
+   //this.country = this.countryControl.value
+   console.log('deltaform: ', this.country.value);
+  /**  let qdc = new QuillDeltaToHtmlConverter(this.country['ops'],
+      { classPrefix: 'noz' });
+    this.delta = qdc;
+    console.log('delta: ', this.delta);
+    this.htmls = qdc.convert();*/
+  }
+
   getDeltaOps() {
     this.documentname = this.contactFormModalDocumentName.value;
-    console.log('this.documentname:', this.documentname);
     this.delta = this.delta;
-    const docDelta = this.dataservice.postDelta(this.delta['ops'], this.documentname);
-    this.addDocument(docDelta);
-   // this.listeDocumentChange.emit(this.listedocument);
-   console.log('this.listedocument: ', this.listedocument);
-    // this.deltaChange = new EventEmitter(this.delta);
-    console.log('deltaoperation', this.delta);
+    this.docDelta = this.dataservice.postDelta(this.delta['ops'], this.documentname);
+    //this.addDocument(this.docDelta);
+    console.log('this.listedocument: ', this.listedocument);
+    console.log('get query from all data: ', this.dataservice.getAllDocs());
+   
   }
 
   /**   AfficherDelta(){
@@ -141,6 +152,18 @@ export class AppComponent implements OnInit { // implementing OnInit
   console.log('this  event: ', event);
     console.log('this.post: ', this.post);
     this.dataservice.postForum(this.post);
+  }
+
+addNewOption() {
+  setTimeout(() => {
+    if(((this.dataservice.getAllDocs()).length)!=0)
+    	 this.listedocument = this.dataservice.getAllDocs(); 
+      else
+         this.listedocument.push(this.docDelta);
+
+      this.countryForm.controls['countryControl'].patchValue(this.listedocument)   
+
+    }, 2000)
   }
 
 }

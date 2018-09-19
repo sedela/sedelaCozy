@@ -28,8 +28,7 @@ export class DataService {
         ({ data }) => this.dbdata = data
       );
 
-   //console.log('query de data service: ', this.dbdata);
-    // return query;
+  
    return this.dbdata[0];
 
   }
@@ -40,11 +39,10 @@ export class DataService {
         ({ data }) => this.dballdata = data
       );
   
-  //console.log('query: ', query);
-  //console.log('query: ', query[0].length);
-   //console.log('query de all data service: ', this.dballdata);
+   console.log('query de all data service: ', this.dballdata);
+   console.log('longeur de all data service: ', this.dballdata.length);
     // return query;
-   return this.dballdata[0];
+   return this.dballdata;
 
   }
   public postDelta(opss: any, name: string) {

@@ -1,4 +1,15 @@
-<app-select [countries]="listedocument" ></app-select>
+<!--<app-select [countries]="listedocument" ></app-select> -->
+
+
+<form [formGroup]="countryForm">
+ <select formControlName="countryControl">
+   <option [ngValue]="country" *ngFor="let country of listedocument">{{country.id}}</option>
+ </select>
+<button (click)="addNewOption()">Document List</button>
+ <button (click)="getHtmlFromDeltaWithPram()"> Open select document </button>
+
+</form>
+
 <div class="float-md-left">   
      <app-model [(html)]="htmls" (htmlChange)='myValueChange($event);' 
            (deltaChange)='myDeltaChange($event);'> </app-model>
@@ -27,7 +38,7 @@
 
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button mdbBtn color="unique" class="waves-light" mdbWavesEffect data-toggle="modal" (click)="getDeltaOps()" (click)="frame.hide()" >Save document
+        <button mdbBtn color="unique" class="waves-light" mdbWavesEffect data-toggle="modal" (click)="getDeltaOps(); addNewOption(); frame.hide()">Save document
           <i class="fa fa-paper-plane-o ml-1"></i>
         </button>
       </div>

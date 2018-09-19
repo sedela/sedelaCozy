@@ -1,49 +1,35 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, Input} from '@angular/core';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
   selector: 'app-select',
   templateUrl: './app.component.matselect.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: [ './app.component.matselect.scss' ]
 })
 export class AppMatSelectComponent  {
-  contactForm: FormGroup;
+  //contactForm
+  countryForm: FormGroup;
   @Input() countries: Array <any> = [];
 
-  constructor() {
-    this.contactForm = this.createFormGroup();
-      }
+  constructor(private fb: FormBuilder) {}
 
-  /**countries = [
-    {
-      full: 'Great Britain',
-      short: 'GB'
-    },
-    {
-      full: 'United States',
-      short: 'US'
-    },
-    {
-      full: 'Canada',
-      short: 'CA'
-    }
-  ];*/
-  //selectedCountry: any = 'GB';
-  //selectedCountryControl = new FormControl(this.selectedCountry);
+ 
+ngOnInit() {
+this.countryForm = this.fb.group({
+            countryControl: [this.countries[1]]
+        });
+}
+ 
+ 
+  
+addNewOption(name: string, code: string) {
+  setTimeout(() => {
+    this.countries.push({name, code});
+this.countryForm.controls['countryControl'].patchValue(
+     this.countries
+  )
+ }, 100)
+}
 
-  // Step 1
-  createFormGroup() {
-    return new FormGroup({
-      personalData: new FormGroup({
-        country: new FormControl()
-      }),
-      text: new FormControl()
-    });
-  }
-  myListDocumentChange(event) {
-    console.log('event liste document:', event);
-    this.countries = event;
-  }
 }
