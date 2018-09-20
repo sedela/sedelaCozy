@@ -110,7 +110,7 @@ export class AppComponent implements OnInit { // implementing OnInit
 
    getHtmlFromDeltaWithPram() {
    this.country =  this.countryForm.controls['countryControl'].value;
-   //console.log('this.countryControl: ', this.countryForm.controls['countryControl'].value);
+   console.log('this.countryControl: ', this.countryForm.controls['countryControl'].value);
   let qdc = new QuillDeltaToHtmlConverter(this.country['ops'],
       { classPrefix: 'noz' });
     this.delta = qdc;
@@ -122,21 +122,25 @@ export class AppComponent implements OnInit { // implementing OnInit
     this.documentname = this.contactFormModalDocumentName.value;
     this.delta = this.delta;
     this.docDelta = this.dataservice.postDelta(this.delta['ops'], this.documentname);
+    //this.addDocument(this.docDelta);
+    console.log('this.listedocument: ', this.listedocument);
+    console.log('get query from all data: ', this.dataservice.getAllDocs());
+   
   }
 
+  /**   AfficherDelta(){
+         console.log("Delta: "+this.delta['ops']);
+         this.deltaChange = new EventEmitter(this.delta);
+     }*/
 
 
   myValueChange(event) {
-    console.log('this.html:',this.htmls);
-    console.log('event Htmls: ',event.value);
     this.htmls = event.value;
   }
 
   myDeltaChange(event) {
-    console.log('event delta:', event.value.ops);
-    console.log('delta de myDeletaChange:', this.delta);
-    this.delta['ops'].push(event.value.ops);
-    console.log('nouveau delta apres push:',this.delta);
+    console.log('event delta:', event.value);
+    this.delta = event.value;
   }
 
   AfficherHTML() {
