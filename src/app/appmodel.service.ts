@@ -38,17 +38,13 @@ export class DataService {
       ).then(
         ({ data }) => this.dballdata = data
       );
-  
-   console.log('query de all data service: ', this.dballdata);
-   console.log('longeur de all data service: ', this.dballdata.length);
-    // return query;
    return this.dballdata;
 
   }
   public postDelta(opss: any, name: string) {
-    const document  = {id: name, ops: opss, create_date: new Date(), last_modif: new Date()};
+    let documents  = {id: name, ops: opss, create_date: new Date(), last_modif: new Date()};
     this.client.mutate(
-        this.client.create('io.sedela.writings', document)
+        this.client.create('io.sedela.writings', documents)
          ).then(
        ({ data }) => console.log(data.id)
    );

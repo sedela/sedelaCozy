@@ -139,7 +139,7 @@ export class AppModelComponent {
     this.deltasave = $event['delta'];
     this.getDelta();
     // console.log($event['delta']['ops']);
-    // console.log(this.deltasave)
+    console.log('this.deltasave:',this.deltasave)
   }
 
   logSelection($event: any) {
@@ -154,6 +154,7 @@ export class AppModelComponent {
 
 getDelta() {
   this.delta = this.deltasave;
+console.log('this.delta:',this.delta);
   this.deltaChange.emit({value: this.delta});
 
 }
