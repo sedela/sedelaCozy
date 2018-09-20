@@ -136,7 +136,9 @@ export class AppModelComponent {
 
   logChange($event: any) {
     // this.deltasave = $event['delta']['ops'];
-    this.deltasave = $event['delta'];
+    console.log('event editor logChange: ',$event.editor['editor'].delta);
+    console.log('event logChange: ',$event);
+   this.deltasave = $event.editor['editor'].delta; //$event['delta'];
     this.getDelta();
     // console.log($event['delta']['ops']);
     // console.log(this.deltasave)

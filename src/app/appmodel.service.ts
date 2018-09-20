@@ -41,6 +41,7 @@ export class DataService {
    return this.dballdata;
 
   }
+
   public postDelta(opss: any, name: string) {
     let documents  = {id: name, ops: opss, create_date: new Date(), last_modif: new Date()};
     this.client.mutate(
