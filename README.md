@@ -15,4 +15,5 @@ sudo docker run --rm -it -p 8080:8080 -v "$(pwd)/dist":/data/cozy-app/sedelaprot
 ```
 
 Open your navigator and go to : `http://sedelaproto.cozy.tools:8080/`
+
 The default password is `cozy`
