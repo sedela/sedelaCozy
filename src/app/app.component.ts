@@ -39,7 +39,7 @@ export class AppComponent implements OnInit { // implementing OnInit
   listedocument: Array<any> = [];
   contactFormModalDocumentName = new FormControl('', Validators.required);
   documentForm: FormGroup;
-
+  optionsSelect: Array<any>;
   constructor(public dataservice: DataService, private fb: FormBuilder) {
     document.addEventListener('DOMContentLoaded', () => {
       const root = <HTMLElement>document.querySelector('[role=application]');
@@ -68,7 +68,11 @@ export class AppComponent implements OnInit { // implementing OnInit
            this.listedocument = this.dataservice.getAllDocs(); 
       }
     	 
-    
+      this.optionsSelect = [
+        { value: '1', label: 'Option 1' },
+        { value: '2', label: 'Option 2' },
+        { value: '3', label: 'Option 3' },
+    ];
     // this.tabpost = this.dataservice.getForum();
 
   }
