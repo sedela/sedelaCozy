@@ -15,7 +15,7 @@ import { AppForumComponent } from './appforum.component';
 // mdbbootstrap module
 
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { MDBBootstrapModule, ButtonsModule, CarouselModule, ChartsModule, CollapseModule, DropdownModule, InputsModule, ModalModule, NavbarModule, PopoverModule, TooltipModule, WavesModule } from 'angular-bootstrap-md';
 
 //Angular material
 
@@ -35,7 +35,18 @@ import { AppMatSelectComponent } from './angularMatselect/src/app/app.component.
     ReactiveFormsModule,
     QuillModule,
     HttpClientModule,
-    MDBBootstrapModule.forRoot()
+    ButtonsModule,
+    CarouselModule.forRoot(),
+    ChartsModule,
+    CollapseModule.forRoot(),
+    DropdownModule.forRoot(),
+    InputsModule.forRoot(),
+    ModalModule.forRoot(),
+    NavbarModule,
+    PopoverModule.forRoot(),
+    TooltipModule.forRoot(),
+    WavesModule.forRoot(),
+   // MDBBootstrapModule.forRoot()
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
