@@ -1,50 +1,5 @@
 
-<!-- Nav tabs -->
-<mdb-tabset #staticTabs [buttonClass]="'md-tabs tabs-4 pills-secondary white mb-2'" [contentClass]="'card'">
-    <!--Panel 1-->
-    <mdb-tab heading="Profile">
-      <div class="row">
-        <div class="col-12">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus
-            reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione
-            porro voluptate odit minima.</p>
-        </div>
-      </div>
-    </mdb-tab>
-    <!--Panel 2-->
-    <mdb-tab heading="Follow">
-      <div class="row">
-        <div class="col-12">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus
-            reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione
-            porro voluptate odit minima.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus
-            reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione
-            porro voluptate odit minima.</p>
-        </div>
-      </div>
-    </mdb-tab>
-    <!--Panel 3-->
-    <mdb-tab heading="Mail">
-      <div class="row">
-        <div class="col-12">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus
-            reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione
-            porro voluptate odit minima.</p>
-        </div>
-      </div>
-    </mdb-tab>
-    <!--Panel 4-->
-    <mdb-tab heading="Help">
-      <div class="row">
-        <div class="col-12">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus
-            reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione
-            porro voluptate odit minima.</p>
-        </div>
-      </div>
-    </mdb-tab>
-  </mdb-tabset>
+
 
 <!--<form [formGroup]="documentForm">
  <select formControlName="documentsControl">
@@ -59,7 +14,7 @@
       <option [ngValue]="documents" *ngFor="let documents of listedocument">{{documents.id}}</option>
     </select>
    <button mdbBtn type="button" color="default" class="waves-light" mdbWavesEffect (click)="addNewOption()">Document List</button>
-  <button (click)="getHtmlFromDeltaWithPram()"> Open select document </button>
+  <button mdbBtn type="button" color="default" class="waves-light" (click)="getHtmlFromDeltaWithPram()"> Open select document </button>
   </form>
      <app-model [(html)]="htmls" (htmlChange)='myValueChange($event);' 
          (deltaChange)='myDeltaChange($event);'> </app-model>

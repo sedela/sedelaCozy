@@ -64,10 +64,12 @@ export class AppComponent implements OnInit { // implementing OnInit
      this.documentForm = this.fb.group({
             documentsControl: new FormControl('', Validators.required)
         });
-     if(((this.dataservice.getAllDocs()).length)!=0)
-    	 this.listedocument = this.dataservice.getAllDocs(); 
-    //console.log('this.listedocument :', this.listedocument);
-     this.tabpost = this.dataservice.getForum();
+     if(this.dataservice.getAllDocs()){
+           this.listedocument = this.dataservice.getAllDocs(); 
+      }
+    	 
+    
+    // this.tabpost = this.dataservice.getForum();
 
   }
 
@@ -141,11 +143,12 @@ export class AppComponent implements OnInit { // implementing OnInit
 
 addNewOption() {
   setTimeout(() => {
-    if(((this.dataservice.getAllDocs()).length)!=0)
-    	 this.listedocument = this.dataservice.getAllDocs(); 
-      else
+   if(this.dataservice.getAllDocs()){
+           this.listedocument = this.dataservice.getAllDocs(); 
+    }
+     else {
          this.listedocument.push(this.docDelta);
-
+      }
       this.documentForm.controls['documentsControl'].patchValue(this.listedocument)   
 
     }, 2000)
