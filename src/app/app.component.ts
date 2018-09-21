@@ -12,21 +12,6 @@ import { QuillDeltaToHtmlConverter } from './quill-delta-to-html/src/QuillDeltaT
 @Component({
   selector: 'div[role=application]',
   templateUrl: './app.component.html',
-  /**template: `
-
-    <div id="Global">
-    <!-- <div id="gauche">
-       <h3>Sedela project Default editor</h3>
-        <app-model [(html)]="htmls" (htmlChange)='myValueChange($event);' (deltaChange)='myDeltaChange($event);'>
-        </app-model>
-        <p></p>
-       <button (click)="getHtmlFromDelta()"> Charger Ecrit reflexif</button>
-       <button type="submit" class="btn btn-success"(click)=getDeltaOps()>Sauvegarder Ecrit réflexif</button>
-    </div>-->
-    <p></p>
-    <div id="droite"> <app-forum ></app-forum> </div>
-     </div>
-          `,*/
   styles: [],
   // styleUrls: ['./app.component.css'],
   providers: [DataService]
@@ -44,7 +29,7 @@ export class AppComponent implements OnInit { // implementing OnInit
   @Input() myDomain: any = 3;
   @Input() documentname: string;
   //@Output() listeDocumentChange = new EventEmitter();
-  country: any;
+  documents: any;
   htmls: any = 'Rédiger ou charger votre écrit réflexif..........';
   // @Output() deltaChange = new EventEmitter();
   delta: any;
@@ -53,7 +38,7 @@ export class AppComponent implements OnInit { // implementing OnInit
   docDelta;
   listedocument: Array<any> = [];
   contactFormModalDocumentName = new FormControl('', Validators.required);
-  countryForm: FormGroup;
+  documentForm: FormGroup;
 
   constructor(public dataservice: DataService, private fb: FormBuilder) {
     document.addEventListener('DOMContentLoaded', () => {
@@ -76,8 +61,8 @@ export class AppComponent implements OnInit { // implementing OnInit
   // constructor(public http: HttpClient, ) {}
   ngOnInit(): void { // adding the lifecycle hook ngOnInit
     this.dataservice.setConnect(this.myToken, this.myDomain);
-     this.countryForm = this.fb.group({
-            countryControl: new FormControl('', Validators.required)
+     this.documentForm = this.fb.group({
+            documentsControl: new FormControl('', Validators.required)
         });
      if(((this.dataservice.getAllDocs()).length)!=0)
     	 this.listedocument = this.dataservice.getAllDocs(); 
@@ -109,12 +94,12 @@ export class AppComponent implements OnInit { // implementing OnInit
   }
 
    getHtmlFromDeltaWithPram() {
-   this.country =  this.countryForm.controls['countryControl'].value;
-   console.log('this.countryControl: ', this.countryForm.controls['countryControl'].value);
-  let qdc = new QuillDeltaToHtmlConverter(this.country['ops'],
+   this.documents =  this.documentForm.controls['documentsControl'].value;
+   //console.log('this.documentsControl: ', this.documentForm.controls['documentsControl'].value);
+  let qdc = new QuillDeltaToHtmlConverter(this.documents['ops'],
       { classPrefix: 'noz' });
     this.delta = qdc;
-    console.log('delta: ', this.delta);
+    //console.log('delta: ', this.delta);
     this.htmls = qdc.convert();
   }
 
@@ -123,8 +108,8 @@ export class AppComponent implements OnInit { // implementing OnInit
     this.delta = this.delta;
     this.docDelta = this.dataservice.postDelta(this.delta['ops'], this.documentname);
     //this.addDocument(this.docDelta);
-    console.log('this.listedocument: ', this.listedocument);
-    console.log('get query from all data: ', this.dataservice.getAllDocs());
+    //console.log('this.listedocument: ', this.listedocument);
+    //console.log('get query from all data: ', this.dataservice.getAllDocs());
    
   }
 
@@ -139,7 +124,7 @@ export class AppComponent implements OnInit { // implementing OnInit
   }
 
   myDeltaChange(event) {
-    console.log('event delta:', event.value);
+    //console.log('event delta:', event.value);
     this.delta = event.value;
   }
 
@@ -149,8 +134,8 @@ export class AppComponent implements OnInit { // implementing OnInit
 
   myPostChange(event) {
     this.post = event;
-  console.log('this  event: ', event);
-    console.log('this.post: ', this.post);
+ // console.log('this  event: ', event);
+   // console.log('this.post: ', this.post);
     this.dataservice.postForum(this.post);
   }
 
@@ -161,7 +146,7 @@ addNewOption() {
       else
          this.listedocument.push(this.docDelta);
 
-      this.countryForm.controls['countryControl'].patchValue(this.listedocument)   
+      this.documentForm.controls['documentsControl'].patchValue(this.listedocument)   
 
     }, 2000)
   }
