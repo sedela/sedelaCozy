@@ -1,15 +1,16 @@
-import { Component, ElementRef, ViewChild, ViewEncapsulation, OnInit, Injectable, Input, Output, EventEmitter  } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
+import { Component, ViewChild, ViewEncapsulation, OnInit, Injectable, Input, Output, EventEmitter  } from '@angular/core';
+import { FormBuilder, FormGroup} from '@angular/forms';
+
 
 import { QuillEditorComponent } from 'ngx-quill/src/quill-editor.component';
 
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
-
+import Quill from 'quill';
+//import { QuillModule } from 'ngx-quill';
 
 // override p with div tag
-import Quill from 'quill';
+//import Quill from 'quill';
 
 const Parchment = Quill.import('parchment');
 const Block = Parchment.query('block');
@@ -26,21 +27,22 @@ Quill.register('modules/counter', Counter);
 // Add fonts to whitelist
 const Font = Quill.import('formats/font');
 // We do not add Aref Ruqaa since it is the default
-Font.whitelist = ['mirza', 'aref', 'sans-serif', 'monospace', 'serif'];
+Font.whitelist = ['mirza','roboto', 'aref', 'sans-serif', 'monospace', 'serif',
+                   'sofia', 'slabo', 'inconsolata'
+                 ];
 Quill.register(Font, true);
-
-import { QuillDeltaToHtmlConverter } from './quill-delta-to-html/src/QuillDeltaToHtmlConverter';
-import { DataService } from './appmodel.service';
-import { HttpClient } from '@angular/common/http';
-// import { AppComponent } from './app-delta-html.component';
 
 @Component({
   selector: 'app-model',
   template: `
-        <quill-editor  [(ngModel)]="html" [style]="{height: '400px'}" (onEditorCreated)="setFocus($event)"
-           (onContentChanged)="logChange($event)"> </quill-editor>
+        <quill-editor  [(ngModel)]="html" 
+        [modules]="toolbarOptions"
+        [style]="{height: '400px'}"
+        (onEditorCreated)="setFocus($event)"
+        (onContentChanged)="logChange($event)"> 
+      
+      </quill-editor>
   `,
-
   styles: [`
     quill-editor {
       display: block;
@@ -65,6 +67,18 @@ import { HttpClient } from '@angular/common/http';
       font-family: "Roboto";
     }
 
+    [quill-editor-toolbar] .ql-font span[data-label="Sofia"]::before {
+      font-family: "Sofia";
+    }
+
+    [quill-editor-toolbar] .ql-font span[data-label="Slabo"]::before {
+      font-family: "Slabo";
+    }
+
+    [quill-editor-toolbar] .ql-font span[data-label="Inconsolata"]::before {
+      font-family: "Inconsolata";
+    }
+
     /* Set content font-families */
     .ql-font-mirza {
       font-family: "Mirza";
@@ -72,9 +86,48 @@ import { HttpClient } from '@angular/common/http';
     .ql-font-aref {
       font-family: "Aref Ruqaa";
     }
+
+    .ql-font-inconsolata {
+      font-family: "Inconsolata";
+    }
+
+    .ql-font-sofia {
+      font-family: "Sofia";
+    }
+
+    .ql-font-slabo {
+      font-family: "Slabo";
+    }
     /* We do not set Aref Ruqaa since it is the default font */
+
+    /* Set default font-family */
+#editor-container {
+  font-family: "Aref Ruqaa";
+  font-size: 18px;
+  height: 375px;
+}
+
+/* Set dropdown font-families */
+#toolbar-container .ql-font span[data-label="Aref Ruqaa"]::before {
+  font-family: "Aref Ruqaa";
+}
+#toolbar-container .ql-font span[data-label="Mirza"]::before {
+  font-family: "Mirza";
+}
+#toolbar-container .ql-font span[data-label="Roboto"]::before {
+  font-family: "Roboto";
+}
+
+/* Set content font-families */
+.ql-font-mirza {
+  font-family: "Mirza";
+}
+.ql-font-roboto {
+  font-family: "Roboto";
+}
+/* We do not set Aref Ruqaa since it is the default font */
+
   `],
- // providers: [DataService],
   encapsulation: ViewEncapsulation.None
 })
 
@@ -87,6 +140,34 @@ export class AppModelComponent {
   @Input() html: any = 2;
   @Output() htmlChange = new EventEmitter();
   @Output() deltaChange = new EventEmitter();
+  toolbarOptions: any = {
+    toolbar: [
+      [{ 'font': ['sans-serif', 'monospace', 'serif'] }],
+      [
+        'bold',
+        'italic',
+        'underline',
+        'strike'
+      ], 
+      [{ 'color': [] }, { 'background': [] }],  
+
+      [{ 'header': 1 }, { 'header': 2 }], 
+      [{ 'size': ['small', false, 'large', 'huge'] }],  
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      
+          
+                    
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],    
+      [{ 'indent': '-1'}, { 'indent': '+1' }, { 'align': [] }],          
+      [{ 'direction': 'rtl' }],   
+                          
+      
+      ['link', 'image'],
+      ['clean']                                         
+    ]
+  } 
+  
+  
 
   isReadOnly = false;
   form: FormGroup;
@@ -98,6 +179,7 @@ export class AppModelComponent {
 
 // @ViewChild('Quill') quills: Quill
   @ViewChild('editor') editor: QuillEditorComponent;
+ 
  // @ViewChild('AppComponent') appc: AppComponent
 
   // tslint:disable-next-line:use-life-cycle-interface
@@ -111,7 +193,7 @@ export class AppModelComponent {
       .subscribe(data => {
         console.log('native fromControl value changes with debounce', data);
       });
-
+     
     if(this.editor){
       this.editor
       .onContentChanged.debounceTime(400)
@@ -119,6 +201,8 @@ export class AppModelComponent {
       .subscribe(data => {
         console.log('view child + directly subscription', data);
       });
+
+      //console.log('modules quill :', this.editor.modules);
 
       }
    
@@ -138,13 +222,8 @@ export class AppModelComponent {
   }
 
   logChange($event: any) {
-    // this.deltasave = $event['delta']['ops'];
-    //console.log('event editor logChange: ',$event.editor['editor'].delta);
-    //console.log('event logChange: ',$event);
-    this.deltasave = $event.editor['editor'].delta; //$event['delta'];
+    this.deltasave = $event.editor['editor'].delta; 
     this.getDelta();
-    // console.log($event['delta']['ops']);
-    // console.log(this.deltasave)
   }
 
   logSelection($event: any) {

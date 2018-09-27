@@ -39,7 +39,6 @@ export class AppComponent implements OnInit { // implementing OnInit
   listedocument: Array<any> = [];
   contactFormModalDocumentName = new FormControl('', Validators.required);
   documentForm: FormGroup;
-  optionsSelect: Array<any>;
   constructor(public dataservice: DataService, private fb: FormBuilder) {
     document.addEventListener('DOMContentLoaded', () => {
       const root = <HTMLElement>document.querySelector('[role=application]');
@@ -64,15 +63,15 @@ export class AppComponent implements OnInit { // implementing OnInit
      this.documentForm = this.fb.group({
             documentsControl: new FormControl('', Validators.required)
         });
-     if(this.dataservice.getAllDocs()){
-           this.listedocument = this.dataservice.getAllDocs(); 
-      }
+
+        setTimeout(() => {
+          if(this.dataservice.getAllDocs()){
+            this.listedocument = this.dataservice.getAllDocs(); 
+       }
+          }, 1000)
+         
+     
     	 
-      this.optionsSelect = [
-        { value: '1', label: 'Option 1' },
-        { value: '2', label: 'Option 2' },
-        { value: '3', label: 'Option 3' },
-    ];
     // this.tabpost = this.dataservice.getForum();
 
   }
@@ -155,7 +154,7 @@ addNewOption() {
       }
       this.documentForm.controls['documentsControl'].patchValue(this.listedocument)   
 
-    }, 2000)
+    }, 1000)
   }
 
 }

@@ -14,7 +14,7 @@
     }
   },
   "license": "MIT",
-  "version": "0.5.0",
+  "version": "0.4.1",
   "permissions": {
     "apps": {
       "type": "io.cozy.apps",

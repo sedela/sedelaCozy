@@ -34,7 +34,7 @@ export class DataService {
   }
   public getAllDocs() {
       const query =  this.client.query(
-        this.client.find('io.sedela.writings')
+        this.client.find('io.sedela.writings').sortBy({create_date: 'asc'})
       ).then(
         ({ data }) => this.dballdata = data
       );
@@ -46,10 +46,11 @@ export class DataService {
     let documents  = {id: name, ops: opss, create_date: new Date(), last_modif: new Date()};
     this.client.mutate(
         this.client.create('io.sedela.writings', documents)
-         ).then(
-       ({ data }) => console.log(data.id)
-   );
-    return this.getAllDocs();
+    )
+   setTimeout(() => {
+     return this.getAllDocs();  
+     }, 1000)
+    
   }
 
 
