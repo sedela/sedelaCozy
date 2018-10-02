@@ -43,91 +43,7 @@ Quill.register(Font, true);
       
       </quill-editor>
   `,
-  styles: [`
-    quill-editor {
-      display: block;
-    }
-    .ng-invalid {
-      border: 1px dashed red;
-    }
-
-    /* Set default font-family */
-    [quill-editor-element] {
-      font-family: "Roboto";
-    }
-
-    /* Set dropdown font-families */
-    [quill-editor-toolbar] .ql-font span[data-label="Aref Ruqaa"]::before {
-      font-family: "Aref Ruqaa";
-    }
-    [quill-editor-toolbar] .ql-font span[data-label="Mirza"]::before {
-      font-family: "Mirza";
-    }
-    [quill-editor-toolbar] .ql-font span[data-label="Roboto"]::before {
-      font-family: "Roboto";
-    }
-
-    [quill-editor-toolbar] .ql-font span[data-label="Sofia"]::before {
-      font-family: "Sofia";
-    }
-
-    [quill-editor-toolbar] .ql-font span[data-label="Slabo"]::before {
-      font-family: "Slabo";
-    }
-
-    [quill-editor-toolbar] .ql-font span[data-label="Inconsolata"]::before {
-      font-family: "Inconsolata";
-    }
-
-    /* Set content font-families */
-    .ql-font-mirza {
-      font-family: "Mirza";
-    }
-    .ql-font-aref {
-      font-family: "Aref Ruqaa";
-    }
-
-    .ql-font-inconsolata {
-      font-family: "Inconsolata";
-    }
-
-    .ql-font-sofia {
-      font-family: "Sofia";
-    }
-
-    .ql-font-slabo {
-      font-family: "Slabo";
-    }
-    /* We do not set Aref Ruqaa since it is the default font */
-
-    /* Set default font-family */
-#editor-container {
-  font-family: "Aref Ruqaa";
-  font-size: 18px;
-  height: 375px;
-}
-
-/* Set dropdown font-families */
-#toolbar-container .ql-font span[data-label="Aref Ruqaa"]::before {
-  font-family: "Aref Ruqaa";
-}
-#toolbar-container .ql-font span[data-label="Mirza"]::before {
-  font-family: "Mirza";
-}
-#toolbar-container .ql-font span[data-label="Roboto"]::before {
-  font-family: "Roboto";
-}
-
-/* Set content font-families */
-.ql-font-mirza {
-  font-family: "Mirza";
-}
-.ql-font-roboto {
-  font-family: "Roboto";
-}
-/* We do not set Aref Ruqaa since it is the default font */
-
-  `],
+  styles: [],
   encapsulation: ViewEncapsulation.None
 })
 
@@ -143,6 +59,7 @@ export class AppModelComponent {
   toolbarOptions: any = {
     toolbar: [
       [{ 'font': ['sans-serif', 'monospace', 'serif'] }],
+      [{ 'size': ['small', false, 'large', 'huge'] }],
       [
         'bold',
         'italic',
@@ -151,8 +68,8 @@ export class AppModelComponent {
       ], 
       [{ 'color': [] }, { 'background': [] }],  
 
-      [{ 'header': 1 }, { 'header': 2 }], 
-      [{ 'size': ['small', false, 'large', 'huge'] }],  
+    
+        
       [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
       
           

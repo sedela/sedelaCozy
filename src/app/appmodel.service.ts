@@ -6,13 +6,14 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/toPromise';
 import CozyClient from 'cozy-client';
 
+
 @Injectable()
 
 export class DataService {
 
    client: any;
    dbdata: any;
-    dballdata: any;
+   dballdata: any;
    setConnect(tokenparam, domain) {
     const  cozyclient = new CozyClient({
       uri: 'http://' + domain,
@@ -23,7 +24,7 @@ export class DataService {
 
   public getDelta() {
       const query =  this.client.query(
-        this.client.find('io.sedela.writings').where({id: 'mydocument'})
+        this.client.find('io.sedela.writings').where({doc_name: 'mydocument'})
       ).then(
         ({ data }) => this.dbdata = data
       );
@@ -43,16 +44,20 @@ export class DataService {
   }
 
   public postDelta(opss: any, name: string) {
-    let documents  = {id: name, ops: opss, create_date: new Date(), last_modif: new Date()};
+    let documents  = {doc_name: name, ops: opss, create_date: new Date(), last_modif: new Date()};
     this.client.mutate(
         this.client.create('io.sedela.writings', documents)
     )
-   setTimeout(() => {
+  /** setTimeout(() => {
      return this.getAllDocs();  
-     }, 1000)
-    
+     }, 1000)*/
+     return this.getAllDocs();  
   }
 
+  public CreateDoctype() {
+        this.client.create('io.sedela.writings');
+        console.log('le doctype est cree');
+  }
 
   public getForum() {
     const query =  this.client.query(
@@ -78,5 +83,7 @@ export class DataService {
    public deleteForum() {
         this.client.delete('io.sedela.comments');
   }
+
+ 
 
 }

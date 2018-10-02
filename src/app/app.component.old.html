@@ -1,0 +1,46 @@
+
+<div class="float-md-left">   
+    <form [formGroup]="documentForm">
+            <select formControlName="documentsControl">
+              <option [ngValue]="documents" *ngFor="let documents of listedocument">{{documents.id}}</option>
+            </select>
+            <button mdbBtn type="button" color="default" class="waves-light" size="sm" mdbWavesEffect (click)="addNewOption()">Liste des documents</button>
+            <button mdbBtn type="button" color="default" class="waves-light" size="sm" (click)="getHtmlFromDeltaWithPram()"> Ouvrir Document </button>
+            <a  title="Download JSON" [href]="downloadJsonHref" download="download.json">Exporter Document</a>
+            <input color="default" class="waves-light" size="sm" type="file" (change)="upload($event.target.files)" />
+          </form>
+     <app-model [(html)]="htmls" (htmlChange)='myValueChange($event);' 
+         (deltaChange)='myDeltaChange($event);'> </app-model>
+  <button mdbBtn type="submit" color="primary" class="waves-light"
+			 mdbWavesEffect (click)="frame.show()">Enregistrer Document
+           </button> 
+
+ <!-- Save document-->
+ <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body mx-3">
+
+        <div class="md-form mb-5">
+          <i class="fa fa-tag prefix grey-text"></i>
+          <input type="text" id="form32" class="form-control validate" mdbInputDirective [formControl]="contactFormModalDocumentName" placeholder="Donner un nom au document">
+		   <button mdbBtn color="unique" class="waves-light" mdbWavesEffect data-toggle="modal" (click)="getDeltaOps(); addNewOption(); frame.hide()">Enregistrer!
+          <i class="fa fa-paper-plane-o ml-1"></i>
+        </button>
+          <label data-error="wrong" data-success="right" for="form32"></label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+   
+</div> 
+
+<div class="float-ld-right">  
+    <app-forum (postChange)='myPostChange($event);'></app-forum> 
+
+</div> 
+
+
+

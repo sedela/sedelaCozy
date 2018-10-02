@@ -1,0 +1,11 @@
+<div mat-dialog-content>
+    <p>Donner un nom au document</p>
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.documentname">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Annuler</button>
+    <button mat-button [mat-dialog-close]="data.documentname" cdkFocusInitial>Valider</button>
+ </div> 
+
