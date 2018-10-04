@@ -6,13 +6,13 @@
           <option  *ngFor="let documents of listedocument" [ngValue]="documents">{{documents.doc_name}} </option>
         </select>
     
-       <button mat-button color="primary" (click)="addNewOption()">Liste des documents</button>
+        <button mat-button color="primary" (click)="addNewOption()">Liste des documents</button>
         <button mat-button color="accent" (click)="getHtmlFromDeltaWithPram()"> Ouvrir Document </button>
         <button mat-button color="warn" (click)="openDialog()">Enregistrer Document </button> 
-       <!-- <a  mat-button color="warn" title="Download JSON" [href]="downloadJsonHref" download="download.json">Exporter Document</a>
+   <!-- <a  mat-button color="warn" title="Download JSON" [href]="downloadJsonHref" download="download.json">Exporter Document</a>
         <input mat-raised-button color="primary" type="file" (change)="upload($event.target.files)" />
-       -->
-      </form>
+    -->
+  </form>
      
 </div>  
    <app-model [(html)]="htmls" (htmlChange)='myValueChange($event);' 

@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable, Input, Inject } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig} from '@angular/material';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
@@ -346,13 +346,16 @@ export class AppComponent implements OnInit { // implementing OnInit
       documentsControl: new FormControl('', [Validators.required])
   });    
 
-    if(this.dataservice.getAllDocs()){
-      this.listedocument = this.dataservice.getAllDocs(); 
-      this.documentForm.controls['documentsControl'].patchValue(this.listedocument);
-     }
-     else{
-      this.dataservice.CreateDoctype();
-     }
+      setTimeout(() => {
+        if(this.dataservice.getAllDocs()){
+          this.listedocument = this.dataservice.getAllDocs(); 
+         this.documentForm.controls['documentsControl'].patchValue(this.listedocument);
+        }
+        else{
+          this.dataservice.CreateDoctype();
+        }
+      }, 1000)
+    
      
   
 
@@ -399,8 +402,9 @@ export class AppComponent implements OnInit { // implementing OnInit
     //this.documentname = this.contactFormModalDocumentName.value;
     this.delta = this.delta;
     this.docDelta = this.dataservice.postDelta(this.delta['ops'], this.documentname);
+    this.listedocument.push(this.docDelta);
+    console.log('this.listedocument de postDelta: ', this.listedocument);
     
-   
   }
 
   /**   AfficherDelta(){
@@ -429,19 +433,20 @@ export class AppComponent implements OnInit { // implementing OnInit
     this.dataservice.postForum(this.post);
   }
 
-addNewOption() {
-  setTimeout(() => {
-   if(this.dataservice.getAllDocs()){
-           this.listedocument = this.dataservice.getAllDocs(); 
-    }
-     else {
-         this.listedocument.push(this.docDelta);
+  addNewOption() {
+    setTimeout(() => {
+     if(this.dataservice.getAllDocs()){
+             this.listedocument = this.dataservice.getAllDocs(); 
       }
-     // this.documentsControl.patchValue(this.listedocument)   
-     this.documentForm.controls['documentsControl'].patchValue(this.listedocument)    
-     console.log('this.listedocument: ', this.listedocument);
-    }, 1000)
-  }
+       else {
+           this.listedocument.push(this.docDelta);
+        }
+       
+       this.documentForm.controls['documentsControl'].patchValue(this.listedocument)    
+      }, 1000)
+
+     // console.log('this.listedocument: ', this.listedocument);
+    }
 
   generateDownloadJsonUri() {
     let theJSON = JSON.stringify(this.resJsonResponse);
@@ -486,17 +491,31 @@ uploadDocument(mydoc) {
  }
 
  openDialog() {
-  const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-   // width: '250px',
-    data: { documentname: this.documentname }
-  });
+  const dialogConfig = new MatDialogConfig();
+  //dialogConfig.disableClose = true;
+  //dialogConfig.autoFocus = true;
+  
+  dialogConfig.position = {
+      'top': '0',
+      'left': '0'
+  };
+  dialogConfig.data = {
+    documentname: this.documentname
+  };
+  
+  //this.dialog.open(DialogOverviewExampleDialog, dialogConfig);
+  const dialogRef = this.dialog.open(DialogOverviewExampleDialog, dialogConfig);
+  dialogRef.afterClosed().subscribe( 
+    data => {
+      console.log("Dialog output:", data);
+      if(data){
+        this.documentname = data;
+        this.getDeltaOps();
+      }
+       
+      
+    });
 
-  dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
-    this.documentname = result;
-    this.getDeltaOps();
-    this.addNewOption();
-  });
 }
 
 }
@@ -508,13 +527,26 @@ uploadDocument(mydoc) {
   templateUrl: './dialog.html',
 })
 export class DialogOverviewExampleDialog {
-
+  
+    
   constructor(
+    private fb: FormBuilder,
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
-
-  onNoClick(): void {
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+      
+     }
+  
+    
+  close(){
     this.dialogRef.close();
   }
+
+  save() {
+    //this.dialogRef.close(this.form.controls['documentname'].value);
+    //console.log('this.form.value',this.form.controls['documentname'].value);
+   //this.dialogRef.close();
+   /** this.dialogRef.close(this.form.value);
+    console.log('this.form.value',this.form.value)*/
+}
 
 }

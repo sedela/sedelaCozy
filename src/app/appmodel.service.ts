@@ -45,13 +45,13 @@ export class DataService {
 
   public postDelta(opss: any, name: string) {
     let documents  = {doc_name: name, ops: opss, create_date: new Date(), last_modif: new Date()};
-    this.client.mutate(
+    //this.client.mutate(
         this.client.create('io.sedela.writings', documents)
-    )
+  //  )
   /** setTimeout(() => {
      return this.getAllDocs();  
      }, 1000)*/
-     return this.getAllDocs();  
+     return documents;  
   }
 
   public CreateDoctype() {

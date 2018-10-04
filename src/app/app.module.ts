@@ -110,8 +110,7 @@ import { AppMatSelectComponent } from './angularMatselect/src/app/app.component.
     MatTooltipModule,
     
   ],
-  entryComponents: [ AppComponent, DialogOverviewExampleDialog],
- // exports: [AppComponent],
+
   
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
@@ -121,6 +120,7 @@ import { AppMatSelectComponent } from './angularMatselect/src/app/app.component.
      multi: true
    },
     DataService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogOverviewExampleDialog]
 })
 export class AppModule { }
