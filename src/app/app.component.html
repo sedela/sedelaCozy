@@ -1,23 +1,32 @@
+<mat-tab-group>
+    <mat-tab label="Ecrit Reflexif"> 
+      <p></p>
+        <div class="button-row">
+            <form [formGroup]="documentForm">
+                 <select placeholder="Choisir un document" formControlName="documentsControl">
+                   <option>--</option>
+                   <option  *ngFor="let documents of listedocument" [ngValue]="documents">{{documents.doc_name}} </option>
+                 </select>
+             
+                 <button mat-button color="primary" (click)="addNewOption()">Liste des documents</button>
+                 <button mat-button color="accent" (click)="getHtmlFromDeltaWithPram()"> Ouvrir Document </button>
+                 <button mat-button color="warn" (click)="openDialog()">Enregistrer Document </button> 
+                <a mat-button color="warn" title="Download JSON" [href]="downloadJsonHref" download="download.json">Exporter Document</a>
+                 <input mat-raised-button color="primary" type="file" (change)="upload($event.target.files)" />
+             
+           </form>
+              
+         </div>  
+            <app-model [(html)]="htmls" (htmlChange)='myValueChange($event);' 
+                (deltaChange)='myDeltaChange($event);'> </app-model>
+          <p></p>
+          <p></p>
+         <button mat-raised-button  color="primary" (click)="openDialog()">Enregistrer Document </button> 
+         
+    </mat-tab>
+    <mat-tab label="Enquete Sur la professionalisation"> <radio-ng-model-example></radio-ng-model-example> </mat-tab>
+    <mat-tab label="Mes Contacts"> Content 3 </mat-tab>
+ 
 
-<div class="button-row">
-   <form [formGroup]="documentForm">
-        <select placeholder="Choisir un document" formControlName="documentsControl">
-          <option>--</option>
-          <option  *ngFor="let documents of listedocument" [ngValue]="documents">{{documents.doc_name}} </option>
-        </select>
-    
-        <button mat-button color="primary" (click)="addNewOption()">Liste des documents</button>
-        <button mat-button color="accent" (click)="getHtmlFromDeltaWithPram()"> Ouvrir Document </button>
-        <button mat-button color="warn" (click)="openDialog()">Enregistrer Document </button> 
-   <!-- <a  mat-button color="warn" title="Download JSON" [href]="downloadJsonHref" download="download.json">Exporter Document</a>
-        <input mat-raised-button color="primary" type="file" (change)="upload($event.target.files)" />
-    -->
-  </form>
-     
-</div>  
-   <app-model [(html)]="htmls" (htmlChange)='myValueChange($event);' 
-       (deltaChange)='myDeltaChange($event);'> </app-model>
- <p></p>
- <p></p>
-<button mat-raised-button  color="primary" (click)="openDialog()">Enregistrer Document </button> 
 
+</mat-tab-group>

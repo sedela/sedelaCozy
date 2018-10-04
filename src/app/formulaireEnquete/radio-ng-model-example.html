@@ -1,0 +1,39 @@
+<p></p>
+
+<div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+  
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+      </ng-container>
+  
+      <!-- Question Column -->
+      <ng-container matColumnDef="question">
+        <mat-header-cell *matHeaderCellDef> Question </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.question}} </mat-cell>
+      </ng-container>
+  
+  
+      <!-- Reponse Column -->
+      <ng-container matColumnDef="reponse">
+        <mat-header-cell *matHeaderCellDef> Reponse </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          
+         <mat-radio-group class="example-radio-group" [(value)]="element.reponse"  [(ngModel)]="favoriteResponse">
+                <mat-radio-button class="example-radio-button" *ngFor="let reponse of reponsepossible" [value]="reponse">
+                  {{reponse}}
+                </mat-radio-button>
+          </mat-radio-group>
+          </mat-cell>
+          
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>

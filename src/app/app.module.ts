@@ -42,7 +42,7 @@ import {
   MatToolbarModule,
   MatTooltipModule,
 } from '@angular/material';
-//import { NO_ERRORS_SCHEMA } from '@angular/core';
+
 
 
 import { AppComponent, DialogOverviewExampleDialog } from './app.component';
@@ -57,16 +57,17 @@ import { AppForumComponent } from './appforum.component';
 
 
 import { AppMatSelectComponent } from './angularMatselect/src/app/app.component.matselect';
-
+import { RadioNgModelExample } from './formulaireEnquete/radio-ng-model-example';
 
 @NgModule({
   declarations: [
     AppComponent,
     DialogOverviewExampleDialog,
-   AppModelComponent,
-   AppForumComponent,
-   AppMatSelectComponent,
-   
+    RadioNgModelExample,
+    AppModelComponent,
+    AppForumComponent,
+    AppMatSelectComponent
+  
   ],
   imports: [
     BrowserModule,
@@ -111,7 +112,7 @@ import { AppMatSelectComponent } from './angularMatselect/src/app/app.component.
     
   ],
 
-  
+  entryComponents: [RadioNgModelExample],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
     {
@@ -121,6 +122,6 @@ import { AppMatSelectComponent } from './angularMatselect/src/app/app.component.
    },
     DataService],
   bootstrap: [AppComponent],
-  entryComponents: [DialogOverviewExampleDialog]
+ 
 })
 export class AppModule { }

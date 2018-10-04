@@ -391,6 +391,7 @@ export class AppComponent implements OnInit { // implementing OnInit
     //console.log('this.documentsControl: ', this.documentsControl.value);
    // this.documents =  this.documentsControl.value;
    this.documents =  this.documentForm.controls['documentsControl'].value;
+   this.resJsonResponse = this.documentForm.controls['documentsControl'].value;
   let qdc = new QuillDeltaToHtmlConverter(this.documents['ops'],
       { classPrefix: 'noz' });
     this.delta = qdc;
