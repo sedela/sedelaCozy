@@ -26,6 +26,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 export class AppComponent implements OnInit { // implementing OnInit
   // compteur: any;
  // @Input()  post: any;
+ panelOpenState: boolean = false;
   @Input() myToken: any = 2;
   @Input() data: any = {};
   @Input() myDomain: any = 3;

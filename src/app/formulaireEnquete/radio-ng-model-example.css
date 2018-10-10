@@ -11,14 +11,11 @@
 }
 
 .example-radio-group {
-  display: inline-flex;
-  flex-direction: column;
+  display: contents;
+  flex-direction: row;
 }
 
 .example-radio-button {
   margin: 5px;
 }
 
-.mat-radio-button ~ .mat-radio-button {
-  padding-right: 16px;
-}

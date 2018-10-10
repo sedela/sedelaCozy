@@ -112,7 +112,7 @@ import { RadioNgModelExample } from './formulaireEnquete/radio-ng-model-example'
     
   ],
 
-  entryComponents: [RadioNgModelExample],
+  entryComponents: [DialogOverviewExampleDialog,RadioNgModelExample],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
     {

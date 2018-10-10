@@ -1,4 +1,6 @@
 <mat-tab-group>
+
+  <!-- Vue Ecrit Reflexif -->
     <mat-tab label="Ecrit Reflexif"> 
       <p></p>
         <div class="button-row">
@@ -24,8 +26,62 @@
          <button mat-raised-button  color="primary" (click)="openDialog()">Enregistrer Document </button> 
          
     </mat-tab>
-    <mat-tab label="Enquete Sur la professionalisation"> <radio-ng-model-example></radio-ng-model-example> </mat-tab>
-    <mat-tab label="Mes Contacts"> Content 3 </mat-tab>
+
+     <!-- Vue formulaire enquete -->
+
+    <mat-tab label="Formulaire d'Enquete sur la professionalisation">
+        <p></p>
+      
+      <mat-accordion>
+        <!-- Pane Posture -->
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Posture
+              </mat-panel-title>
+              <mat-panel-description>
+                Repondre aux diffrentse questions
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+        
+            <radio-ng-model-example></radio-ng-model-example> 
+          </mat-expansion-panel>
+          
+          <!-- Panel Identité -->
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                  Identité 
+              </mat-panel-title>
+              <mat-panel-description>
+                Currently I am {{panelOpenState ? 'open' : 'closed'}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>I'm visible because I am open</p>
+          </mat-expansion-panel>
+
+          <!-- Panel Socialisation -->
+
+             <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+               Socialisation
+              </mat-panel-title>
+              <mat-panel-description>
+                Currently I am {{panelOpenState ? 'open' : 'closed'}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>I'm visible because I am open</p>
+          </mat-expansion-panel>
+        </mat-accordion>
+    </mat-tab>
+
+    <!-- Vue Contact -->
+    <mat-tab label="Mes Contacts">
+       Content 3
+     </mat-tab>
  
 
 

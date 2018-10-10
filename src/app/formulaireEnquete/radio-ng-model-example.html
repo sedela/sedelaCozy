@@ -1,39 +1,157 @@
-<p></p>
+<mat-accordion>
+    <!-- Panel Action -->
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Croyance et Valeur
+          </mat-panel-title>
+          <mat-panel-description>
+           Estime de soi
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="example-container mat-elevation-z8">
+            <mat-table #table [dataSource]="dataSource">
+          
+              <!--- Note that these columns can be defined in any order.
+                    The actual rendered columns are set as a property on the row definition" -->
+          
+              <!-- Position Column -->
+              <ng-container matColumnDef="position">
+                <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+              </ng-container>
+          
+              <!-- Question Column -->
+              <ng-container matColumnDef="question">
+                <mat-header-cell *matHeaderCellDef> Question </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.question}} </mat-cell>
+              </ng-container>
+          
+          
+              <!-- Reponse Column -->
+              <ng-container matColumnDef="reponse">
+                <mat-header-cell *matHeaderCellDef> Reponse </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                  
+                 <mat-radio-group class="example-radio-group"  [(ngModel)]="element.reponse">
+                        <mat-radio-button class="example-radio-button" *ngFor="let reponse of reponsepossible" [value]="reponse">
+                          {{reponse}}
+                        </mat-radio-button>
+                  </mat-radio-group>
+                  </mat-cell>
+                  
+              </ng-container>
+          
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+          </div>
+         
+      </mat-expansion-panel>
+      
+      <!-- Panel Intension -->
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+              Intention
+          </mat-panel-title>
+          <mat-panel-description>
+            Formulation et atteinte des objectifs
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="example-container mat-elevation-z8">
+            <mat-table #table [dataSource]="dataSource_two">
+          
+              <!--- Note that these columns can be defined in any order.
+                    The actual rendered columns are set as a property on the row definition" -->
+          
+              <!-- Position Column -->
+              <ng-container matColumnDef="position">
+                <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+              </ng-container>
+          
+              <!-- Question Column -->
+              <ng-container matColumnDef="question">
+                <mat-header-cell *matHeaderCellDef> Question </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.question}} </mat-cell>
+              </ng-container>
+          
+          
+              <!-- Reponse Column -->
+              <ng-container matColumnDef="reponse">
+                <mat-header-cell *matHeaderCellDef> Reponse </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                  
+                 <mat-radio-group class="example-radio-group"  [(ngModel)]="element.reponse">
+                        <mat-radio-button class="example-radio-button" *ngFor="let reponse of reponsepossible" [value]="reponse">
+                          {{reponse}}
+                        </mat-radio-button>
+                  </mat-radio-group>
+                  </mat-cell>
+                  
+              </ng-container>
+          
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+          </div>
+      </mat-expansion-panel>
 
-<div class="example-container mat-elevation-z8">
-    <mat-table #table [dataSource]="dataSource">
-  
-      <!--- Note that these columns can be defined in any order.
-            The actual rendered columns are set as a property on the row definition" -->
-  
-      <!-- Position Column -->
-      <ng-container matColumnDef="position">
-        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-      </ng-container>
-  
-      <!-- Question Column -->
-      <ng-container matColumnDef="question">
-        <mat-header-cell *matHeaderCellDef> Question </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.question}} </mat-cell>
-      </ng-container>
-  
-  
-      <!-- Reponse Column -->
-      <ng-container matColumnDef="reponse">
-        <mat-header-cell *matHeaderCellDef> Reponse </mat-header-cell>
-        <mat-cell *matCellDef="let element">
+      <!-- Panel Etique -->
+
+         <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+              Ethique
+          </mat-panel-title>
+          <mat-panel-description>
+              Identification des normes;Conformation aux normes 
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="example-container mat-elevation-z8">
+            <mat-table #table [dataSource]="dataSource_three">
           
-         <mat-radio-group class="example-radio-group" [(value)]="element.reponse"  [(ngModel)]="favoriteResponse">
-                <mat-radio-button class="example-radio-button" *ngFor="let reponse of reponsepossible" [value]="reponse">
-                  {{reponse}}
-                </mat-radio-button>
-          </mat-radio-group>
-          </mat-cell>
+              <!--- Note that these columns can be defined in any order.
+                    The actual rendered columns are set as a property on the row definition" -->
           
-      </ng-container>
-  
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-  </div>
+              <!-- Position Column -->
+              <ng-container matColumnDef="position">
+                <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+              </ng-container>
+          
+              <!-- Question Column -->
+              <ng-container matColumnDef="question">
+                <mat-header-cell *matHeaderCellDef> Question </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.question}} </mat-cell>
+              </ng-container>
+          
+          
+              <!-- Reponse Column -->
+              <ng-container matColumnDef="reponse">
+                <mat-header-cell *matHeaderCellDef> Reponse </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                  
+                 <mat-radio-group class="example-radio-group"  [(ngModel)]="element.reponse">
+                        <mat-radio-button class="example-radio-button" *ngFor="let reponse of reponsepossible" [value]="reponse">
+                          {{reponse}}
+                        </mat-radio-button>
+                  </mat-radio-group>
+                  </mat-cell>
+                  
+              </ng-container>
+          
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+           
+          </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+   <div class="example-container"> 
+     <button mat-raised-button color="accent" >Soumettre Formulaire</button>
+    </div>
+ 
