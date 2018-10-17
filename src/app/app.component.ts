@@ -44,7 +44,7 @@ export class AppComponent implements OnInit { // implementing OnInit
   documentForm: FormGroup;
   documentsControl = new FormControl('', [Validators.required])
   downloadJsonHref: SafeUrl;
-  resJsonResponse = {
+  resJsonResponse: any = {
     "_id": "f814cb59a3c9fb2addd438098300994b",
     "_rev": "1-5e52f198fba917818a61cb6f1dd22fb6",
     "create_date": "2018-09-28T08:07:17.730Z",
@@ -355,12 +355,13 @@ export class AppComponent implements OnInit { // implementing OnInit
         else{
           this.dataservice.CreateDoctype();
         }
+
+        this.generateDownloadJsonUri();
       }, 1000)
     
      
-  
 
-    this.generateDownloadJsonUri();
+     //this.generateDownloadJsonUri();
     	 
     // this.tabpost = this.dataservice.getForum();
 
@@ -383,7 +384,7 @@ export class AppComponent implements OnInit { // implementing OnInit
     let qdc = new QuillDeltaToHtmlConverter(this.delta['ops'],
       { classPrefix: 'noz' });
     this.delta = qdc;
-    console.log('delta: ', this.delta);
+    //console.log('delta: ', this.delta);
     this.htmls = qdc.convert();
     //  this.deltaChange.emit(this.htmls);
   }
@@ -392,7 +393,8 @@ export class AppComponent implements OnInit { // implementing OnInit
     //console.log('this.documentsControl: ', this.documentsControl.value);
    // this.documents =  this.documentsControl.value;
    this.documents =  this.documentForm.controls['documentsControl'].value;
-   this.resJsonResponse = this.documentForm.controls['documentsControl'].value;
+   this.resJsonResponse = this.documents;
+   console.log('this.documentsControl: ', this.resJsonResponse);
   let qdc = new QuillDeltaToHtmlConverter(this.documents['ops'],
       { classPrefix: 'noz' });
     this.delta = qdc;
@@ -405,7 +407,7 @@ export class AppComponent implements OnInit { // implementing OnInit
     this.delta = this.delta;
     this.docDelta = this.dataservice.postDelta(this.delta['ops'], this.documentname);
     this.listedocument.push(this.docDelta);
-    console.log('this.listedocument de postDelta: ', this.listedocument);
+    //console.log('this.listedocument de postDelta: ', this.listedocument);
     
   }
 
@@ -451,8 +453,9 @@ export class AppComponent implements OnInit { // implementing OnInit
     }
 
   generateDownloadJsonUri() {
+    console.log('generateDownloadJsonUri: ', this.resJsonResponse);
     let theJSON = JSON.stringify(this.resJsonResponse);
-    console.log('theJSON: ',theJSON );
+   // console.log('theJSON: ',theJSON );
     let blob = new Blob([theJSON], { type: 'text/json' });
     let url= window.URL.createObjectURL(blob);
     let uri:SafeUrl = this.sanitizer.bypassSecurityTrustUrl(url);
@@ -465,7 +468,7 @@ upload(files: File[]){
 }
 
 uploadAndProgress(files: File[]){
-  console.log(files[0])
+ // console.log(files[0])
   this.readFile(files[0]);
 
   var formData = new FormData();
@@ -476,7 +479,7 @@ readFile(file: File) {
   var reader = new FileReader();
   let docupload: any;
   reader.onload = () => {
-      console.log('document:', reader.result);
+      //console.log('document:', reader.result);
      docupload = JSON.parse(reader.result.toString());
       //console.log('delta: ', docupload['ops']);
       this.uploadDocument(docupload)

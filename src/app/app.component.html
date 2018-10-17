@@ -1,88 +1,32 @@
 <mat-tab-group>
-
-  <!-- Vue Ecrit Reflexif -->
-    <mat-tab label="Ecrit Reflexif"> 
-      <p></p>
-        <div class="button-row">
-            <form [formGroup]="documentForm">
-                 <select placeholder="Choisir un document" formControlName="documentsControl">
-                   <option>--</option>
-                   <option  *ngFor="let documents of listedocument" [ngValue]="documents">{{documents.doc_name}} </option>
-                 </select>
-             
-                 <button mat-button color="primary" (click)="addNewOption()">Liste des documents</button>
-                 <button mat-button color="accent" (click)="getHtmlFromDeltaWithPram()"> Ouvrir Document </button>
-                 <button mat-button color="warn" (click)="openDialog()">Enregistrer Document </button> 
-                <a mat-button color="warn" title="Download JSON" [href]="downloadJsonHref" download="download.json">Exporter Document</a>
-                 <input mat-raised-button color="primary" type="file" (change)="upload($event.target.files)" />
-             
-           </form>
-              
-         </div>  
-            <app-model [(html)]="htmls" (htmlChange)='myValueChange($event);' 
-                (deltaChange)='myDeltaChange($event);'> </app-model>
-          <p></p>
-          <p></p>
-         <button mat-raised-button  color="primary" (click)="openDialog()">Enregistrer Document </button> 
-         
-    </mat-tab>
-
-     <!-- Vue formulaire enquete -->
-
-    <mat-tab label="Formulaire d'Enquete sur la professionalisation">
+  <mat-tab label="Ecrit Reflexif"> 
+    <p></p>
+      <div class="button-row">
+          <form [formGroup]="documentForm">
+               <select placeholder="Choisir un document" formControlName="documentsControl">
+                 <option>--</option>
+                 <option  *ngFor="let documents of listedocument" [ngValue]="documents">{{documents.doc_name}} </option>
+               </select>
+           
+               <button mat-button color="primary" (click)="addNewOption()">Liste des documents</button>
+               <button mat-button color="accent" (click)="getHtmlFromDeltaWithPram()"> Ouvrir Document </button>
+               <button mat-button color="warn" (click)="openDialog()">Enregistrer Document </button> 
+              <a mat-button color="warn" title="Download JSON" [href]="downloadJsonHref" download="download.json">Exporter Document</a>
+               <input mat-raised-button color="primary" type="file" (change)="upload($event.target.files)" />
+           
+         </form>
+            
+       </div>  
+          <app-model [(html)]="htmls" (htmlChange)='myValueChange($event);' 
+              (deltaChange)='myDeltaChange($event);'> </app-model>
         <p></p>
-      
-      <mat-accordion>
-        <!-- Pane Posture -->
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Posture
-              </mat-panel-title>
-              <mat-panel-description>
-                Repondre aux diffrentse questions
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-        
-            <radio-ng-model-example></radio-ng-model-example> 
-          </mat-expansion-panel>
-          
-          <!-- Panel Identité -->
-          <mat-expansion-panel (opened)="panelOpenState = true"
-                               (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                  Identité 
-              </mat-panel-title>
-              <mat-panel-description>
-                Currently I am {{panelOpenState ? 'open' : 'closed'}}
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <p>I'm visible because I am open</p>
-          </mat-expansion-panel>
+        <p></p>
+       <button mat-raised-button  color="primary" (click)="openDialog()">Enregistrer Document </button> 
+       
+  </mat-tab>
+  <mat-tab label="SEDELA QUESTIONNAIRE"> <radio-ng-model-example></radio-ng-model-example> </mat-tab>
+  <mat-tab label="Mes Contacts"> Content 3 </mat-tab>
 
-          <!-- Panel Socialisation -->
-
-             <mat-expansion-panel (opened)="panelOpenState = true"
-                               (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-               Socialisation
-              </mat-panel-title>
-              <mat-panel-description>
-                Currently I am {{panelOpenState ? 'open' : 'closed'}}
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <p>I'm visible because I am open</p>
-          </mat-expansion-panel>
-        </mat-accordion>
-    </mat-tab>
-
-    <!-- Vue Contact -->
-    <mat-tab label="Mes Contacts">
-       Content 3
-     </mat-tab>
- 
 
 
 </mat-tab-group>
