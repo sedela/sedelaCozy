@@ -21,7 +21,12 @@ export class PostForums {
 
 export class AppForumComponent {
 
-
+  panelOpenState: boolean = false;
+  listPosts  = [
+    {date: new Date(), value: 'post-0', viewValue: 'Argumenter le raport'},
+    {date: new Date(), value: 'post-1', viewValue: 'Texte trop court'},
+    
+  ];
   @Output() postChange = new EventEmitter<PostForums>();
   postsforum = new PostForums();
 

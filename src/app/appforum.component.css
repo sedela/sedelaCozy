@@ -1,4 +1,4 @@
-.form-container {
+/**.form-container {
     display:block;
     width:90%;
     padding:2em;
@@ -36,3 +36,13 @@ h1 {
         transform: translateY(0);
     }
 }
+
+.example-card {
+  max-width: 100px;
+}*/
+
+.example-header-image {
+  background-image: '../assets/sedela.jpg';
+  background-size: cover ;
+}
+

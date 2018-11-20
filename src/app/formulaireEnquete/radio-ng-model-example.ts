@@ -8,6 +8,7 @@ import {Component} from '@angular/core';
   templateUrl: 'radio-ng-model-example.html',
   styleUrls: ['radio-ng-model-example.css'],
 })
+
 export class RadioNgModelExample {
   
   displayedColumns = ['position',
@@ -106,6 +107,7 @@ const ELEMENT_DATA: Element[] = [
   {position: 55, question: 'Je vise l’autonomie des personnes avec qui je travaille.', reponse: '', clarte: ''}
 
  ];
+ 
 /**const ELEMENT_DATA_two: Element[] = [
   {position: 1, question: 'J’atteins les objectifs professionnels que je me fixe', reponse: ''}
 ];

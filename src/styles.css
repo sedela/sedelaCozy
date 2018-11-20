@@ -46,6 +46,25 @@
 
 
 /* You can add global styles to this file, and also import other style files */
+#global{
+    width:100%;
+  }
+ /** #droite, #gauche {
+      display: inline-block;
+      vertical-align: top;
+  }*/
+  #gauche {
+	  display: inline-block;
+      width:450; 
+	  vertical-align: top;
+  }
+   
+  #droite {
+	  display: inline-block;
+	  vertical-align: top;
+	  margin-top: 35px;
+	  margin-left: 15px;
+  }
 
 /*!
  * Quill Editor v1.2.2

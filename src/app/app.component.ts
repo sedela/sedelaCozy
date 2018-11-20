@@ -346,7 +346,6 @@ export class AppComponent implements OnInit { // implementing OnInit
     this.documentForm = this.fb.group({
       documentsControl: new FormControl('', [Validators.required])
   });    
-
       setTimeout(() => {
         if(this.dataservice.getAllDocs()){
           this.listedocument = this.dataservice.getAllDocs(); 
@@ -354,6 +353,7 @@ export class AppComponent implements OnInit { // implementing OnInit
         }
         else{
           this.dataservice.CreateDoctype();
+          
         }
 
         this.generateDownloadJsonUri();
@@ -435,6 +435,8 @@ export class AppComponent implements OnInit { // implementing OnInit
  // console.log('this  event: ', event);
    // console.log('this.post: ', this.post);
     this.dataservice.postForum(this.post);
+    
+  
   }
 
   addNewOption() {
