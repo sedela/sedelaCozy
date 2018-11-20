@@ -8,7 +8,13 @@
   /* Support for IE. */-webkit-font-feature-settings:"liga";font-feature-settings:"liga"}.example-button-row{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-ms-flex-pack:distribute;justify-content:space-around}
 
 
- /* You can add global styles to this file, and also import other style files */
+ /* You can add global styles to this file, and also import other style files */#global{width:100%}
+
+
+ /** #droite, #gauche {
+      display: inline-block;
+      vertical-align: top;
+  }*/#gauche{width:450}#droite,#gauche{display:inline-block;vertical-align:top}#droite{margin-top:35px;margin-left:15px}
 
 
  /*!
