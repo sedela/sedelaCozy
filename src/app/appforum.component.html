@@ -22,16 +22,16 @@
   </mat-expansion-panel>
 </mat-accordion>
 <p></p>
-<mat-card style="margin: 12px;" class="example-card" *ngFor="let postes of listPosts" >
+<mat-card style="margin: 12px;" class="example-card" *ngFor="let postes of postsforum" >
   <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{postes.value}}</mat-card-title>
+      <mat-card-title>{{postes.post_id}}</mat-card-title>
       <mat-card-subtitle>{{postes.date}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src='../assets/pictures/mouhamadou.jpeg' height="100" width="100" alt="Photo of a Shiba Inu">
+   <!-- <img mat-card-image src='../assets/pictures/mouhamadou.jpeg' height="100" width="100" alt="Photo of a Shiba Inu">-->
     <mat-card-content>
       <p>
-          {{postes.viewValue}}
+          {{postes.description}}
       </p>
     </mat-card-content>
     <mat-card-actions>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'; // importing the OnInit interface
 
-// import { HttpClient, HttpHeaders } from '@angular/common/http';
+ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/toPromise';
@@ -14,6 +14,8 @@ export class DataService {
    client: any;
    dbdata: any;
    dballdata: any;
+   constructor(private http: HttpClient) {}
+
    setConnect(tokenparam, domain) {
     const  cozyclient = new CozyClient({
       uri: 'http://' + domain,
@@ -59,7 +61,7 @@ export class DataService {
         console.log('le doctype est cree');
   }
 
-  public getForum() {
+ /* public getForum() {
     const query =  this.client.query(
       this.client.find('io.sedela.comments').sortBy({date_post: 'desc'})
     ).then(
@@ -67,6 +69,19 @@ export class DataService {
     );
 
  return query;
+  }*/
+ 
+  getCommentaire() {
+    //const uri = this.client.uri + '/api/commentaires';
+    //const uri = 'http://cozy.tools:3000/api/commentaires';
+    const uri = '/api/commentaires';
+    console.log('URL MONGODB:', uri);
+    return this
+            .http
+            .get(uri)
+            .map(res => {
+              return res;
+            });
   }
 
   public postForum(posts: any) {

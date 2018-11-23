@@ -1,17 +1,18 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
 import { DataService } from './appmodel.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-export class PostForums {
-  subject: any;
-  comment: any;
-  date_post: any;
+export class PostForums { 
+  post_id: any;
+  date: any;
+  description: any;
 } 
 
 @Component({
   selector: 'app-forum',
   templateUrl: './appforum.component.html' ,
-  styleUrls: ['./appforum.component.scss'],
+  styleUrls: ['./appforum.component.css'],
   providers: [DataService, PostForums]
   // templateUrl: './appforum.component.html',
  // styleUrls: ['./appforum.component.css']
@@ -19,26 +20,27 @@ export class PostForums {
 
 // tslint:disable-next-line:component-class-suffix
 
-export class AppForumComponent {
+export class AppForumComponent  {
 
   panelOpenState: boolean = false;
   listPosts  = [
-    {date: new Date(), value: 'post-0', viewValue: 'Argumenter le raport'},
-    {date: new Date(), value: 'post-1', viewValue: 'Texte trop court'},
+    {date: new Date(), value: 'post-1', viewValue: 'Argumenter le raport'},
+    {date: new Date(), value: 'post-2', viewValue: 'Texte trop court'},
     
   ];
   @Output() postChange = new EventEmitter<PostForums>();
-  postsforum = new PostForums();
+  
+  @Input() postsforum: any //= new PostForums();
 
      contactFormModalSubject = new FormControl('', Validators.required);
      contactFormModalMessage = new FormControl('', Validators.required);
    addPost() {
     console.log('contactFormModalSubject: ', this.contactFormModalSubject.value );
     console.log(' contactFormModalMessage: ', this.contactFormModalMessage.value);
-    this.postsforum.subject = this.contactFormModalSubject.value;
-    this.postsforum.comment = this.contactFormModalMessage.value;
-    this.postsforum.date_post = new Date();
+    this.postsforum.post_id = this.contactFormModalSubject.value;
+    this.postsforum.description = this.contactFormModalMessage.value;
+    this.postsforum.date = new Date();
     this.postChange.emit(this.postsforum);
   }
-
+ 
 }

@@ -9,6 +9,11 @@ import { QuillDeltaToHtmlConverter } from './quill-delta-to-html/src/QuillDeltaT
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 
+export class ListPosts  { 
+  post_id: any;
+  date: any;
+  description: any;
+} 
 
 
 
@@ -19,13 +24,15 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   templateUrl: './app.component.html',
   styles: [],
   // styleUrls: ['./app.component.css'],
-  providers: [DataService]
+  providers: [DataService, ListPosts]
 })
 
 
 export class AppComponent implements OnInit { // implementing OnInit
   // compteur: any;
  // @Input()  post: any;
+ listPosts: any; // ListPosts;
+
  panelOpenState: boolean = false;
   @Input() myToken: any = 2;
   @Input() data: any = {};
@@ -359,7 +366,7 @@ export class AppComponent implements OnInit { // implementing OnInit
         this.generateDownloadJsonUri();
       }, 1000)
     
-     
+      this.getPosts();
 
      //this.generateDownloadJsonUri();
     	 
@@ -438,6 +445,13 @@ export class AppComponent implements OnInit { // implementing OnInit
     
   
   }
+
+  getPosts() {
+    this.dataservice.getCommentaire().subscribe(res => {
+      this.listPosts = res;
+      console.log('liste des commentaires: ', this.listPosts);
+    });
+      }
 
   addNewOption() {
     setTimeout(() => {
