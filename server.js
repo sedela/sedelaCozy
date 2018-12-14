@@ -13,7 +13,7 @@ var mongoose = require('mongoose');
 // Nous définissons ici les paramètres du serveur.
 //var hostname = 'localhost'; 
 //var port = 3000; 
-const port = process.env.PORT || '3000';
+//const port = process.env.PORT || '3000';
 
  
  // La variable mongoose nous permettra d'utiliser les fonctionnalités du module mongoose.
@@ -38,11 +38,21 @@ db.once('open', function (){
 
 // Nous créons un objet de type Express. 
 var app       = express(); 
-app.set('port', port);
+
+var server = app.listen(process.env.PORT || 3000, function () {
+    var port = server.address().port;
+    console.log("App now running on port", port);
+    app.set('port', port);
+  });
+//app.set('port', port);
 
 //Nous créons un objet body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// Create link to Angular build directory
+var distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
 
 //Nous activons le cors
 app.use(function(req, res, next) {
@@ -158,6 +168,7 @@ myRouter.route('/commentaires/:post_id')
 });*/
 
 
- app.listen(port, function(){
+/** app.listen(port, function(){
     console.log('Listening on port', +port);
-  });
+  });*/
+  

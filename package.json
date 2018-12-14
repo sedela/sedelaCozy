@@ -4,10 +4,10 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --prod",
+    "start": "ng serve ",
+    "build": " ng build --prod ",
     "watch": "ng build --watch",
-    "deploy": "git-directory-deploy --directory dist/ --repo=https://$GITHUB_TOKEN@github.com/sedela/sedela.git",
+    "deploy": "git-directory-deploy --directory dist/ --repo=https://$GITHUB_TOKEN@github.com/sedela/sedela.git ",
     "cozyPublish": "git fetch origin ${DEPLOY_BRANCH:-build}:${DEPLOY_BRANCH:-build} && cozy-app-publish --token $REGISTRY_TOKEN --build-commit $(git rev-parse ${DEPLOY_BRANCH:-build}) --build-dir './dist' --space sedela",
     "test": "ng test",
     "lint": "ng lint",

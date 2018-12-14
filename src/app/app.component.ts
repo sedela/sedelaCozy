@@ -447,6 +447,7 @@ export class AppComponent implements OnInit { // implementing OnInit
   }
 
   getPosts() {
+    console.log('Appel fonction liste de commentaires:');
     this.dataservice.getCommentaire().subscribe(res => {
       this.listPosts = res;
       console.log('liste des commentaires: ', this.listPosts);

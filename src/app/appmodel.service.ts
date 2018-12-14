@@ -73,8 +73,8 @@ export class DataService {
  
   getCommentaire() {
     //const uri = this.client.uri + '/api/commentaires';
-    //const uri = 'http://cozy.tools:3000/api/commentaires';
-    const uri = '/api/commentaires';
+    const uri = 'http://cozy.tools:3000/api/commentaires';
+    //const uri = '/api/commentaires';
     console.log('URL MONGODB:', uri);
     return this
             .http
@@ -98,7 +98,5 @@ export class DataService {
    public deleteForum() {
         this.client.delete('io.sedela.comments');
   }
-
- 
-
+  
 }
