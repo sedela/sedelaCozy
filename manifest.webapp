@@ -35,6 +35,12 @@
     "comments": {
       "type": "io.sedela.comments",
       "verbs": [ "GET", "POST", "PUT" ]
+    },
+
+    "commentall": {
+      "description": "Required for gettins all comments on forum",
+      "type": "fr.imtatlantique.comment.all"
+     
     }
 },
 
