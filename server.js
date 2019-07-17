@@ -27,6 +27,8 @@ replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };
 //URL de notre base de données
  var urlmongo = "mongodb://mniang:mniang86@ds119080.mlab.com:19080/sedeladb";
  
+ //var urlmongo = "mongodb://10.77.6.24:27017/sedeladb";
+
  // Nous connectons l'API à notre base de données
 mongoose.connect(urlmongo, options);
  

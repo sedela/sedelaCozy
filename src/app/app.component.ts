@@ -366,7 +366,9 @@ export class AppComponent implements OnInit { // implementing OnInit
         this.generateDownloadJsonUri();
       }, 1000)
     
+      console.log('appel de la fonction getPost');
       this.getPosts();
+
 
      //this.generateDownloadJsonUri();
     	 

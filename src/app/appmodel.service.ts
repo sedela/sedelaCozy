@@ -6,6 +6,7 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/toPromise';
 import CozyClient from 'cozy-client';
 
+//const apiPost = 'https://api.mlab.com/api/1/databases/sedeladb/collections/commentaires?apiKey=Eic35YeDhWMEre_gzk3qtOpGTYnNBGoe';
 
 @Injectable()
 
@@ -14,6 +15,8 @@ export class DataService {
    client: any;
    dbdata: any;
    dballdata: any;
+   commentaires : any;
+   apikey = 'Eic35YeDhWMEre_gzk3qtOpGTYnNBGoe'; 
    constructor(private http: HttpClient) {}
 
    setConnect(tokenparam, domain) {
@@ -71,10 +74,10 @@ export class DataService {
  return query;
   }*/
  
-  getCommentaire() {
+  getCommentaires() {
     //const uri = this.client.uri + '/api/commentaires';
-    const uri = 'http://cozy.tools:3000/api/commentaires';
-    //const uri = '/api/commentaires';
+    //const uri = 'http://cozy.tools:3000/api/commentaires';
+    const uri = '/api/commentaires';
     console.log('URL MONGODB:', uri);
     return this
             .http
@@ -82,6 +85,22 @@ export class DataService {
             .map(res => {
               return res;
             });
+  }
+
+  getCommentaire() {
+    //const uri = this.client.uri + '/api/commentaires';
+    //const uri = 'http://cozy.tools:3000/api/commentaires';
+   // const uri = 'fr.imtatlantique.comment.all/?apiKey=';
+
+     const uri = '/remote/fr.imtatlantique.comment.all/?apiKey=';
+    console.log('URL MONGODB:', uri);
+   /*const query =  this.client.query(
+      this.client.find('uri')
+    ).then(
+      ({ data }) => this.commentaires = data
+    );
+ return this.commentaires;*/
+    return this.http.get(uri + this.apikey);
   }
 
   public postForum(posts: any) {
@@ -99,4 +118,5 @@ export class DataService {
         this.client.delete('io.sedela.comments');
   }
   
+ 
 }
